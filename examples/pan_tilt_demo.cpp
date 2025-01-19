@@ -1,4 +1,4 @@
-//
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 // begin license header
 //
 // This file is part of Pixy CMUcam5 or "Pixy" for short
@@ -18,14 +18,23 @@
 #include "libpixyusb2.h"
 #include <PIDLoop.h>
 
+#include <fstream>
+#include <string>
+#include <iostream>
+#include <thread>
+#include <time.h>
+#include <sys/wait.h>
+
 #define STP 23
 #define DIR 24
 
+using namespace std;
 
 Pixy2 pixy;
 PIDLoop panLoop(400, 0, 400, true);
 PIDLoop tiltLoop(500, 0, 500, true);
 static bool  run_flag = true;
+std::fstream fout;
 
 void setup (){
   pinMode (STP, OUTPUT);
@@ -106,18 +115,51 @@ Block *trackBlock(uint8_t index)
 }
 
 
+  void write_to_csv () {
+    char buf[64];
+    time_t timestamp = time(NULL);
+    struct tm *tmp = gmtime(&timestamp);
+    
+    int hour = (timestamp/3600) % 24;
+    int minutes = (timestamp/60) % 60;
+    int seconds = timestamp % 60;
+    int  Block_Index;
 
+    strftime(buf, sizeof(buf), "%H:%M:%S\n", tmp);
+    //puts(buf);
+
+    // Were blocks detected? //
+    if (pixy.ccc.numBlocks)
+    {
+      // prints all blocks info into a csv file
+      for (Block_Index = 0; Block_Index < pixy.ccc.numBlocks; ++Block_Index){
+        fout << buf << hour << ":"<< minutes << ":" << seconds << "," << Block_Index << "," << 
+        pixy.ccc.blocks[Block_Index].m_signature << "," << pixy.ccc.blocks[Block_Index].m_x << "," 
+        << pixy.ccc.blocks[Block_Index].m_y << "," << pixy.ccc.blocks[Block_Index].m_width << "," << 
+        pixy.ccc.blocks[Block_Index].m_height << "\n";
+      }
+    }
+      
+  }
+  
+  
 int main()
 {  
   int i=0;
   int16_t index=-1;
-  char buf[64]; 
+  //char buf[64]; 
   int32_t panOffset, tiltOffset;
   Block *block=NULL;
-  
+    
+
   wiringPiSetupGpio(); // sets up GPIO, error message is funny if you don't add this to your code
   setup(); //setup pinStates
   
+  
+  // start writing to a csv
+  fout.open("pixyData.csv", std::ios::out | std::ios::app);
+  fout << "hour,minutes,seconds,block_index,signature,x location,y location,width,height \n";
+  std::cout << "create csv file" << std::endl;
   
   // Catch CTRL+C (SIGINT) signals, otherwise the Pixy object
   // won't be cleaned up correctly, leaving Pixy and possibly USB
@@ -126,19 +168,24 @@ int main()
 
   // need to initialize pixy!
   pixy.init();
+  
 
   // use ccc program to track objects
   pixy.changeProg("color_connected_components");
   
   while(1)
   {
+    
     pixy.ccc.getBlocks();
+    
     if (index==-1) // search....
     {
       printf("Searching for block...\n");
       index = acquireBlock();
-      if (index>=0)
+      if (index>=0){
         printf("Found block!\n");
+        
+      }
     }
     // If we've found a block, find it, track it
     if (index>=0)
@@ -146,9 +193,12 @@ int main()
 
     
     if (block)
-    {        
+    {
       i++;
-    
+      
+  
+      write_to_csv();
+        
       if (i%60==0)
         printf("%d\n", i);   
       
@@ -167,8 +217,6 @@ int main()
         //printf("backward stepping\n");
         stepBackward(panOffset);
       }
-      
-      
     
     }
     else // no object detected, go into reset state
@@ -183,7 +231,8 @@ int main()
     if (run_flag==false)
       break;
   }
-
+  fout.close();
   printf("exiting...\n");
+  return 0;
 }
 

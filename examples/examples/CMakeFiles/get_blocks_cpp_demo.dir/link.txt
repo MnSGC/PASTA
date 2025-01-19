@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/get_blocks_cpp_demo.dir/get_blocks_cpp_demo.cpp.o -o get_blocks_cpp_demo  -Wl,-rpath,/usr/local/lib /usr/local/lib/libpixy2/libpixy2.a /usr/lib/arm-linux-gnueabihf/libusb-1.0.so /usr/local/lib/libwiringPi.so 
