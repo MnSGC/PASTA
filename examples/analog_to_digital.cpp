@@ -1,7 +1,13 @@
-#include <stdio.h>
-#include <signal.h>
-#include <wiringPi.h>
-#include "libpixyusb2.h"
-#include <PIDLoop.h>
+#include <lgpio.h>
+
+int main(){
+	int chip = lgGpiochipOpen(4);
+	
+	printf("%d\n", 5);
+
+
+
+	
+}
 
 
