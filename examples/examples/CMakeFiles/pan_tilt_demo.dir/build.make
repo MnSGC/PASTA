@@ -94,7 +94,8 @@ examples/pan_tilt_demo: examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.
 examples/pan_tilt_demo: examples/CMakeFiles/pan_tilt_demo.dir/build.make
 examples/pan_tilt_demo: /usr/local/lib/libpixy2/libpixy2.a
 examples/pan_tilt_demo: /usr/lib/arm-linux-gnueabihf/libusb-1.0.so
-examples/pan_tilt_demo: /usr/local/lib/libwiringPi.so
+#examples/pan_tilt_demo: /usr/local/lib/libwiringPi.so
+examples/pan_tilt_demo: /usr/local/lib/liblgpio.so
 examples/pan_tilt_demo: examples/CMakeFiles/pan_tilt_demo.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable pan_tilt_demo"
 	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pan_tilt_demo.dir/link.txt --verbose=$(VERBOSE)

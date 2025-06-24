@@ -14,7 +14,7 @@
 //
 
 #include <signal.h>
-#include <wiringPi.h>
+#include <lgpio.h>
 #include "libpixyusb2.h"
 #include <PIDLoop.h>
 
@@ -35,11 +35,12 @@ PIDLoop panLoop(400, 0, 400, true);
 PIDLoop tiltLoop(500, 0, 500, true);
 static bool  run_flag = true;
 std::fstream fout;
-
+/*
 void setup (){
   pinMode (STP, OUTPUT);
   pinMode (DIR, OUTPUT);
 }
+*/
 
 void handle_SIGINT(int unused)
 {
@@ -48,7 +49,7 @@ void handle_SIGINT(int unused)
   run_flag = false;
 }
 
-
+/*
 int panToStep(int32_t panOffset){
   
   //return static_cast<int>()
@@ -86,7 +87,7 @@ void stepperSearch (){
   digitalWrite(STP, LOW);
   delay(1);
 }
-
+*/
 // Take the biggest block (blocks[0]) that's been around for at least 30 frames (1/2 second)
 // and return its index, otherwise return -1
 int16_t acquireBlock()
@@ -150,10 +151,11 @@ int main()
   //char buf[64]; 
   int32_t panOffset, tiltOffset;
   Block *block=NULL;
+  int handle = lgGpiochipOpen(4);
     
 
-  wiringPiSetupGpio(); // sets up GPIO, error message is funny if you don't add this to your code
-  setup(); //setup pinStates
+  //wiringPiSetupGpio(); // sets up GPIO, error message is funny if you don't add this to your code
+  //setup(); //setup pinStates
   
   
   // start writing to a csv
@@ -211,11 +213,11 @@ int main()
       //pixy.setServos(panLoop.m_command, tiltLoop.m_command);
     
       if(panOffset < 0){
-        stepForward(panOffset);
-        
+        //stepForward(panOffset);
+        printf("haro\n");
       }else if(panOffset > 0){
-        //printf("backward stepping\n");
-        stepBackward(panOffset);
+        printf("backward stepping\n");
+        //stepBackward(panOffset);
       }
     
     }
@@ -225,14 +227,15 @@ int main()
       //tiltLoop.reset();
       //pixy.setServos(panLoop.m_command, tiltLoop.m_command);
       index = -1;
-      stepperSearch();
+      //stepperSearch();
     }
 
     if (run_flag==false)
       break;
   }
   fout.close();
-  printf("exiting...\n");
+  lgGpiochipClose(handle);
+  printf("exiting...\n");  
   return 0;
 }
 

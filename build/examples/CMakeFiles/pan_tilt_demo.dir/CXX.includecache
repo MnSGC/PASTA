@@ -9,7 +9,7 @@
 /home/pi/pixy2_example/examples/pan_tilt_demo.cpp
 signal.h
 -
-wiringPi.h
+lgpio.h
 -
 libpixyusb2.h
 /home/pi/pixy2_example/examples/libpixyusb2.h

@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o"
+  "CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o.d"
   "pan_tilt_demo"
   "pan_tilt_demo.pdb"
 )

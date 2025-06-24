@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.o"
+  "CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.o.d"
   "chirp_command_cpp_demo"
   "chirp_command_cpp_demo.pdb"
 )

@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/get_rgb_demo.dir/get_rgb_demo.cpp.o"
+  "CMakeFiles/get_rgb_demo.dir/get_rgb_demo.cpp.o.d"
   "get_rgb_demo"
   "get_rgb_demo.pdb"
 )

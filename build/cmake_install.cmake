@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/pixy2_example
+# Install script for directory: /home/mnsgc/pixy2_for_pi_using_steppermotor
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -37,9 +37,14 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
+# Set default install directory permissions.
+if(NOT DEFINED CMAKE_OBJDUMP)
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+endif()
+
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/pi/pixy2_example/build/examples/cmake_install.cmake")
+  include("/home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +56,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/pi/pixy2_example/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/mnsgc/pixy2_for_pi_using_steppermotor/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

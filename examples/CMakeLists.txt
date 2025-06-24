@@ -8,6 +8,6 @@ list(APPEND examples
 
 foreach(demo IN LISTS examples)
     add_executable(${demo} ${demo}.cpp)
-    find_library(wiringPi_LIB wiringPi)
-    target_link_libraries(${demo} PRIVATE libpixy2 libusb1 ${wiringPi_LIB})
+    find_library(lgpio_LIB lgpio)
+    target_link_libraries(${demo} PRIVATE libpixy2 libusb1 ${lgpio_LIB})
 endforeach()

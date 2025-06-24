@@ -58,7 +58,7 @@ examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o: pan_tilt_demo.cpp \
   /usr/include/arm-linux-gnueabihf/bits/struct_rwlock.h \
   /usr/include/arm-linux-gnueabihf/bits/sigthread.h \
   /usr/include/arm-linux-gnueabihf/bits/signal_ext.h \
-  /usr/local/include/wiringPi.h \
+  /usr/local/include/lgpio.h \
   /usr/local/include/libpixy2/libpixyusb2.h \
   /usr/include/stdio.h \
   /usr/include/arm-linux-gnueabihf/bits/libc-header-start.h \
@@ -409,7 +409,7 @@ examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o: pan_tilt_demo.cpp \
 
 /usr/include/arm-linux-gnueabihf/gnu/stubs-hard.h:
 
-/usr/local/include/wiringPi.h:
+/usr/local/include/lgpio.h:
 
 /usr/include/arm-linux-gnueabihf/bits/types/__fpos_t.h:
 
