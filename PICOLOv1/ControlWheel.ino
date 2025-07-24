@@ -50,7 +50,7 @@ void setServoSpeed(int speed) {
 
     analogWrite(14, dutyCycle);  // Set PWM output
 }
-/*
+
 float calculateHeadingError(float current, float target) {
   // Normalize the error to -180 to 180 range
   float error = target - current;
@@ -58,7 +58,7 @@ float calculateHeadingError(float current, float target) {
   while (error < -180) error += 360;
   return error;
 }
-*/
+
 float calculatePID(float error) {
   unsigned long currentTime = millis();
   float deltaTime = (currentTime - previousTime) / 1000.0;  // Convert to seconds

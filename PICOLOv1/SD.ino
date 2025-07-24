@@ -16,7 +16,7 @@ bool SDsetup(char *dataFile, byte const &N1, byte const &N2){
   SPI.setTX(MOSI);
   SPI.setSCK(SCK);
 
-  if (!SD.begin(CS)) {
+  if (!SD.begin(CS,SPI_HALF_SPEED,SPI1)) {
     SDstatus = false;
     Serial.println("SD failed! Trying again...");
     printOLED("SD failed!\nTrying again...", true);

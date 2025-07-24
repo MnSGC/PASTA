@@ -27,9 +27,9 @@ _____________________________________________________________
 #include <utility/imumaths.h>
 #include <Servo.h>
 
-#include "variables.h"
 #include <Pixy2I2C.h>
 #include <PIDLoop.h>
+#include "variables.h"
 Pixy2I2C pixy;
 
 #define GPS_RUN_RATE    2.0 // Max GPS update speed in Hz. May not update at this speed.
@@ -48,13 +48,23 @@ Pixy2I2C pixy;
 #define NEUTRAL_SERVO (0)     // Neutral position (no rotation)
 
 // PID Constants
-#define KP (.8)  // Proportional gain
-#define KI (0.1) // Integral gain  
+#define KP (.7)  // Proportional gain
+#define KI (0.025) // Integral gain  
 #define KD (0.05)  // Derivative gain
 
 #define torqueKP (0.5)
 
 #define I2C // for pixy
+
+// Motor driver pins (TB6612FNG - Channel B)
+#define BIN1 (12)   // Direction pin B
+#define BIN2 (11)   // Direction pin B
+#define PWMB (10)   // PWM pin B (must support PWM)
+#define STBY (13)   // Standby pin
+
+// Movement parameters
+#define moveDuty (120)   // duty cyles
+#define moveTime (5000)  // Time to move each direction (ms)
 
 // Config variables.
 
@@ -62,7 +72,7 @@ bool usingM8N = true; // true for M8N, false for M9N
 
 // File header. Edit to add columns for other sensors.
 
-String header = "Mode,ServoCommand,hh:mm:ss,T(min),T(s),T(ms),Hz,ExtT(F),ExtT(C),IntT(F),IntT(C),Pa,kPa,ATM,PSI,MSTemp(C),MSTemp(F),Alt SL Ft,Alt SL M,Alt Rel Ft,Alt Rel M,VertVel(ft/s),VertVel(m/s),Accel(x),Accel(y),Accel(z),Deg/S(x),Deg/S(y),Deg/S(z),Ori(x),Ori(y),Ori(z),Mag_T(x),Mag_T(y),Mag_T(z)z,Error,Backup Orientation,Blocks, Version:" + String(VERSION);
+String header = "Mode,ServoCommand,hh:mm:ss,T(min),T(s),T(ms),Hz,ExtT(F),ExtT(C),IntT(F),IntT(C),Pa,kPa,ATM,PSI,MSTemp(C),MSTemp(F),Alt SL Ft,Alt SL M,Alt Rel Ft,Alt Rel M,VertVel(ft/s),VertVel(m/s),Accel(x),Accel(y),Accel(z),Deg/S(x),Deg/S(y),Deg/S(z),Ori(x),Ori(y),Ori(z),Mag_T(x),Mag_T(y),Mag_T(z)z,Error,Backup Orientation,Blocks,linear Pos, Version:" + String(VERSION);
 
 void setup() {
   systemSetup();
@@ -80,10 +90,10 @@ void loop() {
     
     data.concat(mode);
     data.concat(",");
-    OLEDstr.concat("Mode: " + String(mode) + "\n");
+    OLEDstr.concat("Mode:" + String(mode) + " " + String("Blocks:") + pixy.ccc.numBlocks + "\n");
     data.concat(servoCommand);
     data.concat(",");
-    OLEDstr.concat("Servo Speed: " + String(servoCommand) + "\n");
+    OLEDstr.concat("Speed: " + String(servoCommand) + "," + "linPos:" + (pos) + "\n");
     data.concat(",");
     data.concat(HHMMSS);
     data.concat(",");
@@ -201,7 +211,7 @@ void loop() {
     data.concat(",");
     data.concat(String(absAltFt));
     data.concat(",");
-    OLEDstr.concat("MSft: " + String(absAltFt) + "\n");
+    OLEDstr.concat(String(absAltFt)+ "ft" + String(vertVelFt) + "ft/s" + "\n");
     data.concat(String(absAltM));
     data.concat(",");
     data.concat(String(relAltFt));
@@ -230,7 +240,7 @@ void loop() {
     data.concat(",");
     data.concat(String(orientation[0]));
     data.concat(",");
-    OLEDstr.concat("Yaw: " + String(orientation[0]) + "\n");
+    OLEDstr.concat("Yaw:" + String(orientation[0]) + "\n");
     data.concat(String(magnetometer[0]));
     data.concat(",");
     data.concat(String(magnetometer[1]));
@@ -238,11 +248,12 @@ void loop() {
     data.concat(String(magnetometer[2]));
     data.concat(",");
     data.concat(String(panOffset));
-    OLEDstr.concat(String("panOffset: ") + panOffset + "\n");
+    OLEDstr.concat(String("pan:") + panOffset + " " + String("tilt:") + tiltOffset + "\n");
     data.concat(String(BACKUP));
-    OLEDstr.concat(String("Backup orient: ") + BACKUP + "\n");
-    OLEDstr.concat(String("Blocks: ") + pixy.ccc.numBlocks + "\n");
+    OLEDstr.concat(String("Backup:") + BACKUP + "\n");
     data.concat(String(pixy.ccc.numBlocks));
+    OLEDstr.concat(String("PID:") + KP + "," + KI + "," + KD + "," + "\n");
+    data.concat(String(pos));
     /*
       data form additional sensors
     */

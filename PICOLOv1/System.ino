@@ -107,6 +107,7 @@ void systemSetup() {
   Pixysetup();
   printOLED("Pixy Setup Finished", true);
 
+  Actuatorsetup();
   Controlwheelsetup();
   Serial.println("Setup Finished");
   printOLED("Servo Setup Finished", true);
@@ -152,22 +153,28 @@ void systemUpdate(){
 
   if (val == HIGH){
     mode = "Gyro";
-    sensors_event_t event;
-    bno.getEvent(&event);
-    float currentHeading = event.orientation.x;  // Using x-axis for heading
-    // Calculate error (difference from target orientation)
-    // float error = calculateHeadingError(currentHeading, TARGET_ORIENTATION);
-    // Calculate PID output
-    float controlOutput = calculatePID(error);
-    torque = accelerometer[2] * torqueKP;
-    // Convert PID output to servo command
-    servoCommand = mapPIDToServo(controlOutput); //function that maps the calculated PID output to servo control
-    servoCommand = servoCommand + torque;
-    setServoSpeed(servoCommand);
+    float error = 0; // Initialize error
 
+    if (setState == true) { // Only proceed if BACKUP orientation is set
+      if (pixy.ccc.numBlocks > 0) {
+        // Use Pixy's panOffset for error calculation (existing behavior)
+        error = panOffset;
+      } else {
+        // No blocks visible: use BACKUP orientation (BNO yaw) for error
+        float currentHeading = orientation[0]; // Yaw (x-axis)
+        error = calculateHeadingError(currentHeading, BACKUP);
+      }
+
+      // Calculate PID and adjust servo
+      float controlOutput = calculatePID(error);
+      torque = accelerometer[2] * torqueKP;
+      servoCommand = mapPIDToServo(controlOutput) + torque;
+      setServoSpeed(servoCommand);
+    }
   } else{
     mode = "Idle"; //sets system mode to idle
     servoCommand = 0; //sets initial servo speed to 0
+    resetActuator(); //resets linear actuator
   }
 
   

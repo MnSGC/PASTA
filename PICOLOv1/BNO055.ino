@@ -34,4 +34,6 @@ void BNOupdate(){
 
   uint8_t system, gyro, accel, mag = 0;
   bno.getCalibration(&system, &gyro, &accel, &mag);
+
+  
 }

@@ -167,9 +167,21 @@ int val = 0;
 //bno backup
 bool setState = false;
 float BACKUP = 0;
+bool setZState = false;
+float BACKUPZ = 0;
 
 // Pixy variables 
 static int i = 0;
 int j;
 char buf[64]; 
 int32_t panOffset, tiltOffset;
+
+const int feedbackPin = 28;
+int pos = analogRead(feedbackPin);
+bool actuatorReset = false;
+// //pitch
+// float ax = accelerometer[0]; // X-axis acceleration
+// float ay = accelerometer[1]; // Y-axis acceleration
+// float az = accelerometer[2]; // Z-axis acceleration
+// float pitch = atan2(-ax, sqrt(ay * ay + az * az)) * 180.0 / PI;
+

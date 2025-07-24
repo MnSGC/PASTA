@@ -52,15 +52,20 @@ void Pixyupdate()
     tiltLoop.update(tiltOffset);
   
 
-    error = panOffset;
-
     //set BNO backup orientation
-    if(-10 < panOffset < 10 && !setState){
+   if(-5 < panOffset < 5 && !setState){
       setState = true;
       sensors_event_t event;
-      BACKUP = bno.getEvent(&event);
-    }
+      bno.getEvent(&event);  // Get the event data
+      BACKUP = orientation[0];  // Store the actual orientation value (x-axis/yaw)
+}
 
+  if(-5 < tiltOffset < 5 && !setZState){
+    setZState = true;
+    sensors_event_t event;
+    bno.getEvent(&event);  // Get the event data
+    BACKUPZ = orientation[2];  // Store the actual orientation value (x-axis/yaw)
+    
     Serial.print(panOffset + ", ");
     Serial.println(tiltOffset);
   
@@ -80,4 +85,5 @@ void Pixyupdate()
 */
 
   }
+}
 }

@@ -5,7 +5,7 @@ Using SparkFun TB6612FNG driver and BNO055 IMU
 Code by: Andrew Schmit
 Last modified: 6/30/2025
 _____________________________________________________________
-
+*/
 
 void Actuatorsetup() {
   pinMode(BIN1, OUTPUT);
@@ -14,43 +14,61 @@ void Actuatorsetup() {
   pinMode(STBY, OUTPUT);
   
   digitalWrite(STBY, HIGH); // Wake up motor driver
+  analogWrite(PWMB, moveDuty); 
 
-  Serial.println("Motor driver awake\n");
+  printOLED("Starting Actuator test.");
+  
+  resetActuator();
+  
 
+   // 20% duty
+  
+  moveActuator(false);
+  for (int i = 0; i < 50; i++){
+    delay(100);
+    pos = analogRead(feedbackPin);
+    printOLED(String(pos));
+  }
+
+  // moveActuator(true);
+  // for (int i = 0; i < 50; i++){
+  //   delay(100);
+  //   pos = analogRead(feedbackPin);
+  //   printOLED(String(pos));
+  // }
+
+  resetActuator();
+
+  printOLED("Actuator test complete.");
 }
 
-void loop() {
-  // Extend actuator
-  Serial.println("Extending...");
-  moveActuator(true, moveSpeed);
-  printPositionDuringMove(moveTime);
-
-  // Stop
-  stopActuator();
-  delay(1000);
-
-  // Retract actuator
-  Serial.println("Retracting...");
-  moveActuator(false, moveSpeed);
-  printPositionDuringMove(moveTime);
-
-  // Stop
-  stopActuator();
-  delay(2000);
-}
-
-// Moves actuator in a direction
-void moveActuator(bool extend, int speed) {
+// Moves actuator in a direction at duty cycle
+void moveActuator(bool extend) {
   digitalWrite(BIN1, extend ? HIGH : LOW);
   digitalWrite(BIN2, extend ? LOW : HIGH);
-  analogWrite(PWMB, speed);
+  analogWrite(PWMB, moveDuty);  // 20% duty
 }
-
 // Stops the actuator
 void stopActuator() {
   analogWrite(PWMB, 0);
 }
 
+
+
+void resetActuator(){
+  pos = analogRead(feedbackPin);
+  if(pos > 280){
+    actuatorReset = true;
+  }else if(pos < 280){
+    actuatorReset = false;
+  }
+  if(actuatorReset == false){
+    moveActuator(true);
+    delay(5000);
+    stopActuator();
+  }
+}
+/*
 // Normalize heading error to range [-180, 180]
 float calculateHeadingErrorZ(float currentZ, float targetZ) {
   float errorZ = targetZ - currentZ;
@@ -78,15 +96,13 @@ void updateLinearActuator(float targetHeadingZ) {
   float errorZ = calculateHeadingErrorZ(currentHeadingZ, targetHeadingZ);
   float pOutput = calculateP(errorZ);
   moveActuator(////// )
-
+*/
 // Reads and prints position every 100 ms for `duration` milliseconds
 void printPositionDuringMove(int duration) {
   int start = millis();
-  while (millis() - start < duration) {
-    int pos = analogRead(feedbackPin); // 0–4095 (12-bit)
+  while (millis() - start < duration) { 
     Serial.print("Position: ");
     Serial.println(pos);
     delay(100);
   }
 }
-*/
