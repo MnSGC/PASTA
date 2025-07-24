@@ -2,7 +2,8 @@
 _____________________________________________________________
 Code for the reaction control system controled by a continous rotational servo
 Code by: Drew Miler
-Date of last modification: 4 Apr 2025
+Modified by: Andrew Schmit
+Date of last modification: 14 July 2025
 _____________________________________________________________
 
 */
@@ -15,7 +16,29 @@ void Controlwheelsetup() {
   analogWriteFreq(50);  // Set PWM frequency to 50 Hz (20ms period)
   delay(1000);  // Allow servo to initialize
   
-  Serial.println("System Ready");
+     printOLED("Starting sweep test...");
+
+    // Full reverse (~1ms pulse → ~5% duty cycle)
+    analogWrite(SERVO_PIN, 26);
+    Serial.println("Full reverse");
+    delay(2000);
+
+    // Stop (~1.5ms pulse → ~7.5% duty cycle)
+    analogWrite(SERVO_PIN, 38);
+    Serial.println("Stop");
+    delay(2000);
+
+    // Full forward (~2ms pulse → ~10% duty cycle)
+    analogWrite(SERVO_PIN, 51);
+    Serial.println("Full forward");
+    delay(2000);
+
+    // Stop again
+    analogWrite(SERVO_PIN, 38);
+    Serial.println("Stop");
+    delay(2000);
+
+    printOLED("Servo test complete.");
 }
 
 void setServoSpeed(int speed) {
@@ -25,9 +48,9 @@ void setServoSpeed(int speed) {
     // Convert pulse width to duty cycle (0-255 for Pico's analogWrite)
     int dutyCycle = map(pulseWidth, 1000, 2000, 26, 51);  // ~5% to ~10% duty cycle
 
-    analogWrite(8, dutyCycle);  // Set PWM output
+    analogWrite(14, dutyCycle);  // Set PWM output
 }
-
+/*
 float calculateHeadingError(float current, float target) {
   // Normalize the error to -180 to 180 range
   float error = target - current;
@@ -35,7 +58,7 @@ float calculateHeadingError(float current, float target) {
   while (error < -180) error += 360;
   return error;
 }
-
+*/
 float calculatePID(float error) {
   unsigned long currentTime = millis();
   float deltaTime = (currentTime - previousTime) / 1000.0;  // Convert to seconds

@@ -160,3 +160,16 @@ int torqueKP = .5;
 unsigned long previousTime = 0;
 
 String mode = "Idle"; //system state
+//digital read
+int inPin = 6;
+int val = 0;
+
+//bno backup
+bool setState = false;
+float BACKUP = 0;
+
+// Pixy variables 
+static int i = 0;
+int j;
+char buf[64]; 
+int32_t panOffset, tiltOffset;

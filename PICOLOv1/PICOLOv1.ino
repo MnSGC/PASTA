@@ -2,9 +2,9 @@
 _____________________________________________________________
 Code for the PICOLO Flight Computer
 Code by: Radhakrishna Vojjala
-Modified by: Drew Miler
+Modified by: Andrew Schmit
 Date of last modification: 10 Apr 2025
-Modified to accomate 2 PID control systems using gyroscope and photoresistor data
+Modified to accomate 2 PID control systems using gyroscope and Pixy2 cam
 PID code reference: https://www.robotsforroboticists.com/pid-control/
 
 Version 1.0
@@ -28,6 +28,9 @@ _____________________________________________________________
 #include <Servo.h>
 
 #include "variables.h"
+#include <Pixy2I2C.h>
+#include <PIDLoop.h>
+Pixy2I2C pixy;
 
 #define GPS_RUN_RATE    2.0 // Max GPS update speed in Hz. May not update at this speed.
 #define DATA_RATE 10000 // Max rate of data aqusition in Hz. Set to 100 or some huge number to remove the limiter
@@ -37,8 +40,8 @@ _____________________________________________________________
 
 // Constants
 #define BNO055_SAMPLERATE_DELAY_MS (100)
-#define SERVO_PIN (7)  // GPIO pin for servo on Pico
-#define TARGET_ORIENTATION (0.0)  // Target heading in degrees
+#define SERVO_PIN (14)  // GPIO pin for servo on Pico
+#define TARGET_ORIENTATION (BACKUP)  // Target heading in degrees
 #define TOLERANCE (5.0)  // Tolerance in degrees
 #define MAX_SERVO_SPEED (100)  // Maximum servo speed (0-180)
 #define MIN_SERVO_SPEED (-100)    // Minimum servo speed (0-180)
@@ -49,11 +52,9 @@ _____________________________________________________________
 #define KI (0.1) // Integral gain  
 #define KD (0.05)  // Derivative gain
 
-#define photoKP (.15)
-#define photoKI (0.015)
-#define photoKD (0.015)
-
 #define torqueKP (0.5)
+
+#define I2C // for pixy
 
 // Config variables.
 
@@ -61,7 +62,7 @@ bool usingM8N = true; // true for M8N, false for M9N
 
 // File header. Edit to add columns for other sensors.
 
-String header = "Mode,ServoCommand,hh:mm:ss,T(min),T(s),T(ms),Hz,ExtT(F),ExtT(C),IntT(F),IntT(C),Pa,kPa,ATM,PSI,MSTemp(C),MSTemp(F),Alt SL Ft,Alt SL M,Alt Rel Ft,Alt Rel M,VertVel(ft/s),VertVel(m/s),Accel(x),Accel(y),Accel(z),Deg/S(x),Deg/S(y),Deg/S(z),Ori(x),Ori(y),Ori(z),Mag_T(x),Mag_T(y),Mag_T(z)z,Version:" + String(VERSION);
+String header = "Mode,ServoCommand,hh:mm:ss,T(min),T(s),T(ms),Hz,ExtT(F),ExtT(C),IntT(F),IntT(C),Pa,kPa,ATM,PSI,MSTemp(C),MSTemp(F),Alt SL Ft,Alt SL M,Alt Rel Ft,Alt Rel M,VertVel(ft/s),VertVel(m/s),Accel(x),Accel(y),Accel(z),Deg/S(x),Deg/S(y),Deg/S(z),Ori(x),Ori(y),Ori(z),Mag_T(x),Mag_T(y),Mag_T(z)z,Error,Backup Orientation,Blocks, Version:" + String(VERSION);
 
 void setup() {
   systemSetup();
@@ -82,7 +83,7 @@ void loop() {
     OLEDstr.concat("Mode: " + String(mode) + "\n");
     data.concat(servoCommand);
     data.concat(",");
-    OLEDstr.concat("ServoCMD: " + String(servoCommand) + "\n");
+    OLEDstr.concat("Servo Speed: " + String(servoCommand) + "\n");
     data.concat(",");
     data.concat(HHMMSS);
     data.concat(",");
@@ -200,7 +201,7 @@ void loop() {
     data.concat(",");
     data.concat(String(absAltFt));
     data.concat(",");
-    //OLEDstr.concat("MSft: " + String(absAltFt) + "\n");
+    OLEDstr.concat("MSft: " + String(absAltFt) + "\n");
     data.concat(String(absAltM));
     data.concat(",");
     data.concat(String(relAltFt));
@@ -229,14 +230,19 @@ void loop() {
     data.concat(",");
     data.concat(String(orientation[0]));
     data.concat(",");
-    OLEDstr.concat("Z: " + String(orientation[0]) + "\n");
+    OLEDstr.concat("Yaw: " + String(orientation[0]) + "\n");
     data.concat(String(magnetometer[0]));
     data.concat(",");
     data.concat(String(magnetometer[1]));
     data.concat(",");
     data.concat(String(magnetometer[2]));
     data.concat(",");
-
+    data.concat(String(panOffset));
+    OLEDstr.concat(String("panOffset: ") + panOffset + "\n");
+    data.concat(String(BACKUP));
+    OLEDstr.concat(String("Backup orient: ") + BACKUP + "\n");
+    OLEDstr.concat(String("Blocks: ") + pixy.ccc.numBlocks + "\n");
+    data.concat(String(pixy.ccc.numBlocks));
     /*
       data form additional sensors
     */

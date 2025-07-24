@@ -2,7 +2,8 @@
 _____________________________________________________________
 Code for the entire system of the Pi Pico W.
 Code by: Radhakrishna Vojjala
-Date of last modification: 20 Mar 2025
+Edited by: Andrew Schmit
+Date of last modification: 7 July 2025
 _____________________________________________________________
 This file contains the Setup and Update functions for the entire system. The code is meant to be called in setup() and loop().
 */
@@ -57,6 +58,8 @@ void systemSetup() {
     digitalWrite(ERR_LED_PIN, LOW);
   }
 
+
+
   /*inStatus = inTher.begin(10);
   outStatus = outTher.begin(10);
 
@@ -99,12 +102,16 @@ void systemSetup() {
 
   loopTime = 1000 / DATA_RATE;
 
+  pinMode(inPin, INPUT);
+
+  Pixysetup();
+  printOLED("Pixy Setup Finished", true);
+
   Controlwheelsetup();
   Serial.println("Setup Finished");
-  printOLED("Setup Finished", true);
+  printOLED("Servo Setup Finished", true);
   Serial.println(header);
 
-  pinMode(9, INPUT); 
 }
 
 
@@ -124,8 +131,9 @@ void systemUpdate(){
   // updating sensors
 
   //GPSupdate();
- // MSupdate();
+  MSupdate();
   BNOupdate();
+  Pixyupdate();
 
   //inTher.update();
   //inTempF = inTher.getTempF();
@@ -140,21 +148,22 @@ void systemUpdate(){
 
   servoCommand = 0; //sets initial servo speed to 0
 
-  digitalRead(9);
+  val = digitalRead(6);
 
-  if (digitalRead(9) == HIGH){
+  if (val == HIGH){
     mode = "Gyro";
     sensors_event_t event;
     bno.getEvent(&event);
     float currentHeading = event.orientation.x;  // Using x-axis for heading
     // Calculate error (difference from target orientation)
-    float error = calculateHeadingError(currentHeading, TARGET_ORIENTATION);
+    // float error = calculateHeadingError(currentHeading, TARGET_ORIENTATION);
     // Calculate PID output
     float controlOutput = calculatePID(error);
     torque = accelerometer[2] * torqueKP;
     // Convert PID output to servo command
     servoCommand = mapPIDToServo(controlOutput); //function that maps the calculated PID output to servo control
     servoCommand = servoCommand + torque;
+    setServoSpeed(servoCommand);
 
   } else{
     mode = "Idle"; //sets system mode to idle
@@ -166,45 +175,6 @@ void systemUpdate(){
   delay(BNO055_SAMPLERATE_DELAY_MS); // optional delay that decreases system Hz but reduces gyro drift
 
 }
-//   diffp1p2 = abs(photo1 - photo2);
-
-//   // Photoresistor control system
-//   if (nowTimeMin > .5 && nowTimeMin < 2){ //the photoresistors are only in control at set time intervals
-//     //photo3 should be facing the sun while photo 1 and 2 are pointing 90* left and right from the sun
-//     mode = "Photo";
-//     n = 0;
-//     blueLEDoff();
-//     while (n == 0) {
-//       n = 1;
-//       if (diffp1p2 < photomargin) { // Checks if photo1 and 2 are basically equal
-//         if (photo3 > photo1 && photo3 > photo2) { // if so, checks to make sure that photo 3 is facing the sun and is not facing away (180* off)
-//           n = 1; //exits the while loop
-//         } else { //the box is flipped 180*, so the box needs to turn around
-//           servoCommand = 100; //sets servo spin to max
-//           n = 1; // exits the while loop
-//         }
-//       }
-//       if ((photo2 - photo1) > photomargin) { //If photo2 is larger than photo1, the servo spins to rotate the box back
-//         float error = diffp1p2;
-//         // Calculate PID output
-//         float controlOutput = calculatePID(error);
-//         // Convert PID output to servo command
-//         servoCommand = mapPIDToServo(controlOutput); //function that maps the calculated PID output to servo control
-//         n = 1; 
-//       }
-//       if ((photo1 - photo2) > photomargin) { //If photo 1 is larger than photo2, the servo spins in the opposite direction to rotate the box
-//          float error = diffp1p2;
-//           // Calculate PID output
-//           float controlOutput = calculatePID(error);
-//           // Convert PID output to servo command
-//           servoCommand = mapPIDToServo(controlOutput); //function that maps the calculated PID output to servo control
-//           servoCommand = servoCommand*-1;
-//           n = 1;
-//       }
-//     }
-//   }
-//   setServoSpeed(servoCommand); //the servo is commanded to move whatever was previously calculated
-// }
 
 // Function to convert timer to HHMMSS format 
 
