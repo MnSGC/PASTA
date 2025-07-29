@@ -27,10 +27,11 @@ _____________________________________________________________
 #include <utility/imumaths.h>
 #include <Servo.h>
 
-#include <Pixy2I2C.h>
 #include <PIDLoop.h>
 #include "variables.h"
-Pixy2I2C pixy;
+
+#include <Pixy2UART.h>
+Pixy2UART pixy;
 
 #define GPS_RUN_RATE    2.0 // Max GPS update speed in Hz. May not update at this speed.
 #define DATA_RATE 10000 // Max rate of data aqusition in Hz. Set to 100 or some huge number to remove the limiter
@@ -54,7 +55,6 @@ Pixy2I2C pixy;
 
 #define torqueKP (0.5)
 
-#define I2C // for pixy
 
 // Motor driver pins (TB6612FNG - Channel B)
 #define BIN1 (12)   // Direction pin B

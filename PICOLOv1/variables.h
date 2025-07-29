@@ -161,7 +161,7 @@ unsigned long previousTime = 0;
 
 String mode = "Idle"; //system state
 //digital read
-int inPin = 6;
+const int inPin = 6;
 int val = 0;
 
 //bno backup

@@ -20,22 +20,22 @@ void Controlwheelsetup() {
 
     // Full reverse (~1ms pulse → ~5% duty cycle)
     analogWrite(SERVO_PIN, 26);
-    Serial.println("Full reverse");
+    printOLED("Full reverse"); // change back to serial print
     delay(2000);
 
     // Stop (~1.5ms pulse → ~7.5% duty cycle)
     analogWrite(SERVO_PIN, 38);
-    Serial.println("Stop");
+    printOLED("Stop");
     delay(2000);
 
     // Full forward (~2ms pulse → ~10% duty cycle)
     analogWrite(SERVO_PIN, 51);
-    Serial.println("Full forward");
+    printOLED("Full forward");
     delay(2000);
 
     // Stop again
     analogWrite(SERVO_PIN, 38);
-    Serial.println("Stop");
+    printOLED("Stop");
     delay(2000);
 
     printOLED("Servo test complete.");

@@ -18,9 +18,16 @@ PIDLoop tiltLoop(500, 0, 500, true);
 
 void Pixysetup()
 {
-  // We need to initialize the pixy object 
-  pixy.init();
-  // Use color connected components program for the pan tilt to track 
+  if (pixy.init() == 0) {
+    Serial.println("Pixy Online!");
+    printOLED("Pixy Online!", true);
+  } else {
+    Serial.println("Pixy Offline! Check wiring.");
+    printOLED("Pixy Offline!\nCheck wiring.", true);
+    digitalWrite(ERR_LED_PIN, HIGH);
+    delay(500);
+    digitalWrite(ERR_LED_PIN, LOW);
+  }
   pixy.changeProg("color_connected_components");
 }
 
@@ -52,20 +59,15 @@ void Pixyupdate()
     tiltLoop.update(tiltOffset);
   
 
+    error = panOffset;
+
     //set BNO backup orientation
-   if(-5 < panOffset < 5 && !setState){
+    if(-10 < panOffset < 10 && !setState){
       setState = true;
       sensors_event_t event;
-      bno.getEvent(&event);  // Get the event data
-      BACKUP = orientation[0];  // Store the actual orientation value (x-axis/yaw)
-}
+      BACKUP = bno.getEvent(&event);
+    }
 
-  if(-5 < tiltOffset < 5 && !setZState){
-    setZState = true;
-    sensors_event_t event;
-    bno.getEvent(&event);  // Get the event data
-    BACKUPZ = orientation[2];  // Store the actual orientation value (x-axis/yaw)
-    
     Serial.print(panOffset + ", ");
     Serial.println(tiltOffset);
   
@@ -85,5 +87,4 @@ void Pixyupdate()
 */
 
   }
-}
 }
