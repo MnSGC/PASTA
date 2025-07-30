@@ -183,11 +183,24 @@ void systemUpdate(){
     servoCommand = 0; //sets initial servo speed to 0
   }
 
+
+
+  tiltVal = digitialRead(7);
+
+  if (tiltVal == HIGH) [
+    tiltMode = "Tilt";
+    float ControlOutputZ = CalculateP(errorZ);
+    updateLinearActuator(controlOutputZ);
+  ]
+
+
+
   
   // Delay for next reading
   delay(BNO055_SAMPLERATE_DELAY_MS); // optional delay that decreases system Hz but reduces gyro drift
 
 }
+
 
 // Function to convert timer to HHMMSS format 
 

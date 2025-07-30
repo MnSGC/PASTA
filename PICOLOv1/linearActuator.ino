@@ -66,34 +66,29 @@ void resetActuator() {
     stopActuator();
   }
 }
-/*
-// Normalize heading error to range [-180, 180]
-float calculateHeadingErrorZ(float currentZ, float targetZ) {
-  float errorZ = targetZ - currentZ;
-  while (errorZ > 180) error -= 360;
-  while (errorZ < -180) error += 360;
-  return errorZ;
-}
 
-float calculateP(float errorZ) {
-  float proportionalZ = KPZ * errorZ;
- 
-  unsigned long currentTime = millis();
-  float deltaTime = (currentTime - previousTime) / 1000.0;
- 
-  float outputZ = proportionalZ
+
+
+errorZ = tiltOffset;
+
+float calculateP(errorZ) {
+  proportionalZ = KPZ * errorZ;
+  outputZ = proportionalZ;
 
   previousErrorZ = errorZ;
-  previousTime = currentTime;
-
-  return constrain(outputZ, -255, 255);
+  return constrain(outputZ, 10, 280);
 }
 
-void updateLinearActuator(float targetHeadingZ) {
-  float currentHeadingZ = orientation[2];  
-  float errorZ = calculateHeadingErrorZ(currentHeadingZ, targetHeadingZ);
-  float pOutput = calculateP(errorZ);
-  moveActuator(////// )
-*/
+void updateLinearActuator(proportionalZ) {  
+  if (controlOutputZ < 0){
+    moveActuator(true);
+  }
+  if (controlOutputZ > 0) {
+    moveActuator(false);
+  }
+  else {
+    stopActuator();
+  }
+}
 // Reads and prints position every 100 ms for `duration` milliseconds
 

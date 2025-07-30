@@ -52,12 +52,13 @@ Pixy2UART pixy;
 #define KP (.7)  // Proportional gain
 #define KI (0.025) // Integral gain  
 #define KD (0.05)  // Derivative gain
+#define KPZ (.8) // Linear Actuator proportional gain
 
 #define torqueKP (0.5)
 
 //LEDs
-#define LED_R (7) //Flywheel spinning right
-#define LED_L (8) //Flywheel spinning right
+#define LED_R (8) //Flywheel spinning right
+#define LED_L (9) //Flywheel spinning right
 
 // Motor driver pins (TB6612FNG - Channel B)
 #define BIN1 (12)   // Direction pin B
@@ -93,7 +94,7 @@ void loop() {
     
     data.concat(mode);
     data.concat(",");
-    OLEDstr.concat("Mode:" + String(mode) + " " + String("Blocks:") + pixy.ccc.numBlocks + "\n");
+    OLEDstr.concat("Mode:" + String(mode) + ", " + String(tiltMode) "\n");
     data.concat(servoCommand);
     data.concat(",");
     OLEDstr.concat("Speed: " + String(servoCommand) + "," + "linPos:" + (pos) + "\n");
@@ -255,7 +256,7 @@ void loop() {
     data.concat(String(BACKUP));
     OLEDstr.concat(String("Backup:") + BACKUP + "\n");
     data.concat(String(pixy.ccc.numBlocks));
-    OLEDstr.concat(String("PID:") + KP + "," + KI + "," + KD + "," + "\n");
+    OLEDstr.concat(String("Blocks:") + pixy.ccc.numBlocks + "\n");
     data.concat(String(pos));
     /*
       data form additional sensors
