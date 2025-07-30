@@ -33,6 +33,8 @@ void systemSetup() {
   digitalWrite(ERR_LED_PIN, LOW);
   delay(100);
   digitalWrite(LOOP_LED_PIN, LOW);
+  pinMode(LED_R, OUTPUT);//right LED
+  pinMode(LED_L, OUTPUT);//left LED
 
   if (bno.begin()){
     Serial.println("BNO Online!");
@@ -106,7 +108,7 @@ void systemSetup() {
   pinMode(inPin, INPUT);
 
   Pixysetup();
-
+  Actuatorsetup();
   Controlwheelsetup();
   Serial.println("Setup Finished");
   printOLED("Servo Setup Finished", true);
@@ -164,6 +166,17 @@ void systemUpdate(){
     servoCommand = mapPIDToServo(controlOutput); //function that maps the calculated PID output to servo control
     servoCommand = servoCommand + torque;
     setServoSpeed(servoCommand);
+
+    if(panOffset < -20 && pixy.ccc.numBlocks > 0){
+      digitalWrite(LED_R, HIGH);
+    }
+    else if(panOffset > 20 && pixy.ccc.numBlocks > 0){
+      digitalWrite(LED_L, HIGH);
+    }
+    else{
+      digitalWrite(LED_L, LOW);
+      digitalWrite(LED_R, LOW);
+    }
 
   } else{
     mode = "Idle"; //sets system mode to idle

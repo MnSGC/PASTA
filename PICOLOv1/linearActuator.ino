@@ -19,9 +19,7 @@ void Actuatorsetup() {
   printOLED("Starting Actuator test.");
   
   resetActuator();
-  
-
-   // 20% duty
+  // 20% duty
   
   moveActuator(false);
   for (int i = 0; i < 50; i++){
@@ -29,13 +27,6 @@ void Actuatorsetup() {
     pos = analogRead(feedbackPin);
     printOLED(String(pos));
   }
-
-  // moveActuator(true);
-  // for (int i = 0; i < 50; i++){
-  //   delay(100);
-  //   pos = analogRead(feedbackPin);
-  //   printOLED(String(pos));
-  // }
 
   resetActuator();
 
@@ -53,18 +44,25 @@ void stopActuator() {
   analogWrite(PWMB, 0);
 }
 
-
-
-void resetActuator(){
+// I need to ask Andrew about position scale and why 280 is the assumed to be reset.
+void resetActuator() {
   pos = analogRead(feedbackPin);
   if(pos > 280){
     actuatorReset = true;
-  }else if(pos < 280){
+  }
+  else{
     actuatorReset = false;
   }
-  if(actuatorReset == false){
+  if (!actuatorReset) {
     moveActuator(true);
-    delay(5000);
+    for (int i = 0; i < 10; i++) { 
+      delay(500);
+      pos = analogRead(feedbackPin);
+      if (pos > 280) {
+        actuatorReset = true;
+        break;  // stop checking early if reset reached!
+      }
+    }
     stopActuator();
   }
 }
@@ -98,11 +96,4 @@ void updateLinearActuator(float targetHeadingZ) {
   moveActuator(////// )
 */
 // Reads and prints position every 100 ms for `duration` milliseconds
-void printPositionDuringMove(int duration) {
-  int start = millis();
-  while (millis() - start < duration) { 
-    Serial.print("Position: ");
-    Serial.println(pos);
-    delay(100);
-  }
-}
+

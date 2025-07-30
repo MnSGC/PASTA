@@ -55,6 +55,9 @@ Pixy2UART pixy;
 
 #define torqueKP (0.5)
 
+//LEDs
+#define LED_R (7) //Flywheel spinning right
+#define LED_L (8) //Flywheel spinning right
 
 // Motor driver pins (TB6612FNG - Channel B)
 #define BIN1 (12)   // Direction pin B

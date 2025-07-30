@@ -20,21 +20,25 @@ void Controlwheelsetup() {
 
     // Full reverse (~1ms pulse → ~5% duty cycle)
     analogWrite(SERVO_PIN, 26);
+    digitalWrite(LED_R, HIGH);
     printOLED("Full reverse"); // change back to serial print
     delay(2000);
 
     // Stop (~1.5ms pulse → ~7.5% duty cycle)
     analogWrite(SERVO_PIN, 38);
+    digitalWrite(LED_R, LOW);
     printOLED("Stop");
     delay(2000);
 
     // Full forward (~2ms pulse → ~10% duty cycle)
     analogWrite(SERVO_PIN, 51);
+    digitalWrite(LED_L, HIGH);
     printOLED("Full forward");
     delay(2000);
 
     // Stop again
     analogWrite(SERVO_PIN, 38);
+    digitalWrite(LED_L, LOW);
     printOLED("Stop");
     delay(2000);
 
@@ -97,3 +101,4 @@ int mapPIDToServo(float pidOutput) {
   
   return servoCommand;
 }
+
