@@ -75,16 +75,18 @@ void resetActuator() {
       moveActuator(false);  // Move toward extended
     }
     else {
-      stopActuator();
-      printOLED("Actuator reset properly");
+      stopActuator(); 
+      printOLED("Actuator reset properly"); // aded to make sure the actuator is resettin adn we will know that
       delay(100);
       return;  // Exit loop when within range
     }
     delay(50);  // Give time for motor to move
   }
   // idk if this should be in an if statement for when this should happen
-  stopActuator();
-  printOLED("Reset completed"); // adds a stop if the loop fails
+  //if (millis() - currentTime < 200) { needs to be fixed, but the idea is if the while loop above runs for too long the actuator will stop instaed of continuoulsy running.
+    stopActuator();
+    printOLED("Reset completed"); // adds a stop if the loop fails
+  //}
 }
 
 void updateLinearActuator() {  
