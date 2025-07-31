@@ -106,6 +106,7 @@ void systemSetup() {
   loopTime = 1000 / DATA_RATE;
 
   pinMode(inPin, INPUT);
+  pinMode(tiltPin, INPUT);
 
   Pixysetup();
   Actuatorsetup();
@@ -151,6 +152,8 @@ void systemUpdate(){
   servoCommand = 0; //sets initial servo speed to 0
 
   val = digitalRead(6);
+  tiltVal = digitalRead(7);
+  analogRead(feedbackPin);
 
   if (val == HIGH){
     mode = "Gyro";
@@ -177,17 +180,27 @@ void systemUpdate(){
       digitalWrite(LED_L, LOW);
       digitalWrite(LED_R, LOW);
     }
+    
 
   } else{
     mode = "Idle"; //sets system mode to idle
     servoCommand = 0; //sets initial servo speed to 0
   }
-
   
+  if (tiltVal == HIGH) {
+      tiltMode = "Tilt";
+      updateLinearActuator();
+    }
+    else{
+      tiltMode = "Idle";
+      resetActuator();
+    }
+
   // Delay for next reading
   delay(BNO055_SAMPLERATE_DELAY_MS); // optional delay that decreases system Hz but reduces gyro drift
 
 }
+
 
 // Function to convert timer to HHMMSS format 
 

@@ -176,12 +176,23 @@ int j;
 char buf[64]; 
 int32_t panOffset, tiltOffset;
 
+// Actuator Variables
 const int feedbackPin = 28;
-int pos = analogRead(feedbackPin);
-bool actuatorReset = false;
+int pos = 0;
+int maxPos = 0;
+int minPos = 0;
+float truePos = 0;
+const float targetPos = 2.5;  // Target mid-range
+const float tolerance = 0.1;
+float proportionalZ = 0;
+float errorZ = 0;
+const int tiltPin = 7;
+int tiltVal = 0;
+String tiltMode = "Idle";
 // //pitch
 // float ax = accelerometer[0]; // X-axis acceleration
 // float ay = accelerometer[1]; // Y-axis acceleration
 // float az = accelerometer[2]; // Z-axis acceleration
 // float pitch = atan2(-ax, sqrt(ay * ay + az * az)) * 180.0 / PI;
+
 
