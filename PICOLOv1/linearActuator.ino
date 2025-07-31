@@ -18,21 +18,40 @@ void Actuatorsetup() {
 
   printOLED("Starting Actuator test.");
   
-  resetActuator();
-  // 20% duty
-  
   moveActuator(false);
   for (int i = 0; i < 50; i++){
     delay(100);
     pos = analogRead(feedbackPin);
     printOLED(String(pos));
   }
+  maxPos = pos;
 
+  moveActuator(true);
+  for (int i = 0; i < 50; i++){
+    delay(100);
+    pos = analogRead(feedbackPin);
+    printOLED(String(pos));
+  }
+  minPos = pos;
+  
+  moveActuator(false);
+  for (int i = 0; i < 50; i++){
+    delay(100);
+    pos = analogRead(feedbackPin);
+    truePos = posMap(pos,minPos,maxPos);
+    printOLED(String(truePos));
+  }
+  
   resetActuator();
+  printOLED(String(truePos));
 
   printOLED("Actuator test complete.");
 }
 
+float posMap(int pos,int min,int max){
+  truePos = (pos - min) * (5.0 / (max - min));
+  return truePos;
+}
 // Moves actuator in a direction at duty cycle
 void moveActuator(bool extend) {
   digitalWrite(BIN1, extend ? HIGH : LOW);
@@ -46,49 +65,47 @@ void stopActuator() {
 
 // I need to ask Andrew about position scale and why 280 is the assumed to be reset.
 void resetActuator() {
-  pos = analogRead(feedbackPin);
-  if(pos > 280){
-    actuatorReset = true;
-  }
-  else{
-    actuatorReset = false;
-  }
-  if (!actuatorReset) {
-    moveActuator(true);
-    for (int i = 0; i < 10; i++) { 
-      delay(500);
-      pos = analogRead(feedbackPin);
-      if (pos > 280) {
-        actuatorReset = true;
-        break;  // stop checking early if reset reached!
-      }
+  // Continuously move actuator until it's within the desired range
+  while (true) {
+    pos = analogRead(feedbackPin);
+    truePos = posMap(pos, minPos, maxPos);
+
+    if (truePos > targetPos + tolerance) {
+      moveActuator(true);   // Move toward retracted
     }
-    stopActuator();
+    else if (truePos < targetPos - tolerance) {
+      moveActuator(false);  // Move toward extended
+    }
+    else {
+      stopActuator();
+      break;  // Exit loop when within range
+    }
+
+    delay(50);  // Give time for motor to move
   }
 }
 
-
-
-errorZ = tiltOffset;
-
-float calculateP(errorZ) {
-  proportionalZ = KPZ * errorZ;
-  outputZ = proportionalZ;
-
-  previousErrorZ = errorZ;
-  return constrain(outputZ, 10, 280);
-}
-
-void updateLinearActuator(proportionalZ) {  
-  if (controlOutputZ < 0){
-    moveActuator(true);
+void updateLinearActuator() {  
+  proportionalZ = KPZ * errorZ; // find proportional term
+  
+  if(pixy.ccc.numBlocks > 0){
+    while(true){
+      if (proportionalZ < -5){
+        moveActuator(true);
+      }
+      else if (proportionalZ > 5) {
+        moveActuator(false);
+      }
+      else {
+        stopActuator();
+        break;
+      }
+      delay(50);
+    }
+  }else{
+    resetActuator();
   }
-  if (controlOutputZ > 0) {
-    moveActuator(false);
-  }
-  else {
-    stopActuator();
-  }
+
 }
 // Reads and prints position every 100 ms for `duration` milliseconds
 

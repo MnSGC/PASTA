@@ -94,7 +94,7 @@ void loop() {
     
     data.concat(mode);
     data.concat(",");
-    OLEDstr.concat("Mode:" + String(mode) + ", " + String(tiltMode) "\n");
+    OLEDstr.concat("Mode:" + String(mode) + ", " + String(tiltMode) + "\n");
     data.concat(servoCommand);
     data.concat(",");
     OLEDstr.concat("Speed: " + String(servoCommand) + "," + "linPos:" + (pos) + "\n");
