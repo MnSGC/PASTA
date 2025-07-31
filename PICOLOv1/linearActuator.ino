@@ -49,8 +49,7 @@ void Actuatorsetup() {
 }
 
 float posMap(int pos,int min,int max){
-  truePos = (pos - min) * (5.0 / (max - min));
-  return truePos;
+  return (float)(pos - min) * (5.0 / (max - min)); // only change that might be meaningful
 }
 // Moves actuator in a direction at duty cycle
 void moveActuator(bool extend) {
@@ -63,7 +62,6 @@ void stopActuator() {
   analogWrite(PWMB, 0);
 }
 
-// I need to ask Andrew about position scale and why 280 is the assumed to be reset.
 void resetActuator() {
   // Continuously move actuator until it's within the desired range
   while (true) {
@@ -77,12 +75,18 @@ void resetActuator() {
       moveActuator(false);  // Move toward extended
     }
     else {
-      stopActuator();
-      break;  // Exit loop when within range
+      stopActuator(); 
+      printOLED("Actuator reset properly"); // aded to make sure the actuator is resettin adn we will know that
+      delay(100);
+      return;  // Exit loop when within range
     }
-
     delay(50);  // Give time for motor to move
   }
+  // idk if this should be in an if statement for when this should happen
+  //if (millis() - currentTime < 200) { needs to be fixed, but the idea is if the while loop above runs for too long the actuator will stop instaed of continuoulsy running.
+    stopActuator();
+    printOLED("Reset completed"); // adds a stop if the loop fails
+  //}
 }
 
 void updateLinearActuator() {  
