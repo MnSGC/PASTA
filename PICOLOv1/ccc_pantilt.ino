@@ -58,8 +58,9 @@ void Pixyupdate()
     panLoop.update(panOffset);
     tiltLoop.update(tiltOffset);
   
-
+    //set PID error to pixy error
     error = panOffset;
+    errorZ = tiltOffset;
 
     //set BNO backup orientation
     if(-10 < panOffset < 10 && !setState){
