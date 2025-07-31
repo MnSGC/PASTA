@@ -63,7 +63,6 @@ void stopActuator() {
   analogWrite(PWMB, 0);
 }
 
-// I need to ask Andrew about position scale and why 280 is the assumed to be reset.
 void resetActuator() {
   // Continuously move actuator until it's within the desired range
   while (true) {
