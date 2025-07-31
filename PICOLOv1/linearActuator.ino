@@ -49,7 +49,7 @@ void Actuatorsetup() {
 }
 
 float posMap(int pos,int min,int max){
-  return (float)(pos - min) * (5.0 / (max - min));
+  return (float)(pos - min) * (5.0 / (max - min)); // only change that might be meaningful
 }
 // Moves actuator in a direction at duty cycle
 void moveActuator(bool extend) {
@@ -84,7 +84,7 @@ void resetActuator() {
   }
   // idk if this should be in an if statement for when this should happen
   stopActuator();
-  printOLED("Reset completed");
+  printOLED("Reset completed"); // adds a stop if the loop fails
 }
 
 void updateLinearActuator() {  
