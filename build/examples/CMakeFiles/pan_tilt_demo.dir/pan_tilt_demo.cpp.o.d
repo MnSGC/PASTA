@@ -1,16 +1,41 @@
 examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o: \
  /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/pan_tilt_demo.cpp \
- /usr/include/stdc-predef.h /usr/include/signal.h /usr/include/features.h \
- /usr/include/features-time64.h \
+ /usr/include/stdc-predef.h /usr/include/c++/12/cstddef \
+ /usr/include/arm-linux-gnueabihf/c++/12/bits/c++config.h \
+ /usr/include/arm-linux-gnueabihf/c++/12/bits/os_defines.h \
+ /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/arm-linux-gnueabihf/bits/wordsize.h \
  /usr/include/arm-linux-gnueabihf/bits/timesize.h \
  /usr/include/arm-linux-gnueabihf/sys/cdefs.h \
  /usr/include/arm-linux-gnueabihf/bits/long-double.h \
  /usr/include/arm-linux-gnueabihf/gnu/stubs.h \
  /usr/include/arm-linux-gnueabihf/gnu/stubs-hard.h \
+ /usr/include/arm-linux-gnueabihf/c++/12/bits/cpu_defines.h \
+ /usr/include/c++/12/pstl/pstl_config.h \
+ /usr/lib/gcc/arm-linux-gnueabihf/12/include/stddef.h \
+ /usr/include/c++/12/cstdint \
+ /usr/lib/gcc/arm-linux-gnueabihf/12/include/stdint.h \
+ /usr/include/stdint.h \
+ /usr/include/arm-linux-gnueabihf/bits/libc-header-start.h \
  /usr/include/arm-linux-gnueabihf/bits/types.h \
  /usr/include/arm-linux-gnueabihf/bits/typesizes.h \
  /usr/include/arm-linux-gnueabihf/bits/time64.h \
+ /usr/include/arm-linux-gnueabihf/bits/wchar.h \
+ /usr/include/arm-linux-gnueabihf/bits/stdint-intn.h \
+ /usr/include/arm-linux-gnueabihf/bits/stdint-uintn.h \
+ /usr/include/c++/12/cstdio /usr/include/stdio.h \
+ /usr/lib/gcc/arm-linux-gnueabihf/12/include/stdarg.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/__fpos_t.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/__mbstate_t.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/__fpos64_t.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/__FILE.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/FILE.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/struct_FILE.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/cookie_io_functions_t.h \
+ /usr/include/arm-linux-gnueabihf/bits/stdio_lim.h \
+ /usr/include/arm-linux-gnueabihf/bits/floatn.h \
+ /usr/include/arm-linux-gnueabihf/bits/floatn-common.h \
+ /usr/include/arm-linux-gnueabihf/bits/stdio.h /usr/include/signal.h \
  /usr/include/arm-linux-gnueabihf/bits/signum-generic.h \
  /usr/include/arm-linux-gnueabihf/bits/signum-arch.h \
  /usr/include/arm-linux-gnueabihf/bits/types/sig_atomic_t.h \
@@ -31,7 +56,6 @@ examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o: \
  /usr/include/arm-linux-gnueabihf/bits/sigaction.h \
  /usr/include/arm-linux-gnueabihf/bits/sigcontext.h \
  /usr/lib/linux/uapi/arm/asm/sigcontext.h \
- /usr/lib/gcc/arm-linux-gnueabihf/12/include/stddef.h \
  /usr/include/arm-linux-gnueabihf/bits/types/stack_t.h \
  /usr/include/arm-linux-gnueabihf/sys/ucontext.h \
  /usr/include/arm-linux-gnueabihf/bits/sigstack.h \
@@ -53,14 +77,8 @@ examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o: \
  /usr/include/arm-linux-gnueabihf/bits/struct_rwlock.h \
  /usr/include/arm-linux-gnueabihf/bits/sigthread.h \
  /usr/include/arm-linux-gnueabihf/bits/signal_ext.h \
- /usr/local/include/lgpio.h \
- /usr/lib/gcc/arm-linux-gnueabihf/12/include/stdint.h \
- /usr/include/stdint.h \
- /usr/include/arm-linux-gnueabihf/bits/libc-header-start.h \
- /usr/include/arm-linux-gnueabihf/bits/wchar.h \
- /usr/include/arm-linux-gnueabihf/bits/stdint-intn.h \
- /usr/include/arm-linux-gnueabihf/bits/stdint-uintn.h \
- /usr/include/inttypes.h /usr/include/pthread.h /usr/include/sched.h \
+ /usr/local/include/lgpio.h /usr/include/inttypes.h \
+ /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/arm-linux-gnueabihf/bits/sched.h \
  /usr/include/arm-linux-gnueabihf/bits/types/struct_sched_param.h \
  /usr/include/arm-linux-gnueabihf/bits/cpu-set.h /usr/include/time.h \
@@ -85,25 +103,9 @@ examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o: \
  /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
  /usr/include/linux/stddef.h /usr/lib/linux/uapi/arm/asm/posix_types.h \
  /usr/include/asm-generic/posix_types.h \
- /usr/local/include/libpixy2/libpixyusb2.h /usr/include/stdio.h \
- /usr/lib/gcc/arm-linux-gnueabihf/12/include/stdarg.h \
- /usr/include/arm-linux-gnueabihf/bits/types/__fpos_t.h \
- /usr/include/arm-linux-gnueabihf/bits/types/__mbstate_t.h \
- /usr/include/arm-linux-gnueabihf/bits/types/__fpos64_t.h \
- /usr/include/arm-linux-gnueabihf/bits/types/__FILE.h \
- /usr/include/arm-linux-gnueabihf/bits/types/FILE.h \
- /usr/include/arm-linux-gnueabihf/bits/types/struct_FILE.h \
- /usr/include/arm-linux-gnueabihf/bits/types/cookie_io_functions_t.h \
- /usr/include/arm-linux-gnueabihf/bits/stdio_lim.h \
- /usr/include/arm-linux-gnueabihf/bits/floatn.h \
- /usr/include/arm-linux-gnueabihf/bits/floatn-common.h \
- /usr/include/arm-linux-gnueabihf/bits/stdio.h \
+ /usr/local/include/libpixy2/libpixyusb2.h \
  /usr/local/include/libpixy2/chirp.hpp /usr/include/c++/12/stdlib.h \
- /usr/include/c++/12/cstdlib \
- /usr/include/arm-linux-gnueabihf/c++/12/bits/c++config.h \
- /usr/include/arm-linux-gnueabihf/c++/12/bits/os_defines.h \
- /usr/include/arm-linux-gnueabihf/c++/12/bits/cpu_defines.h \
- /usr/include/c++/12/pstl/pstl_config.h /usr/include/stdlib.h \
+ /usr/include/c++/12/cstdlib /usr/include/stdlib.h \
  /usr/include/arm-linux-gnueabihf/bits/waitflags.h \
  /usr/include/arm-linux-gnueabihf/bits/waitstatus.h \
  /usr/include/arm-linux-gnueabihf/sys/types.h /usr/include/endian.h \
@@ -145,7 +147,7 @@ examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o: \
  /usr/include/c++/12/new /usr/include/c++/12/bits/move.h \
  /usr/include/c++/12/type_traits \
  /usr/include/c++/12/bits/nested_exception.h \
- /usr/include/c++/12/bits/char_traits.h /usr/include/c++/12/cstdint \
+ /usr/include/c++/12/bits/char_traits.h \
  /usr/include/c++/12/bits/localefwd.h \
  /usr/include/arm-linux-gnueabihf/c++/12/bits/c++locale.h \
  /usr/include/c++/12/clocale /usr/include/locale.h \
@@ -187,11 +189,10 @@ examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o: \
  /usr/include/c++/12/bits/stl_construct.h /usr/include/c++/12/string_view \
  /usr/include/c++/12/bits/functional_hash.h \
  /usr/include/c++/12/bits/string_view.tcc \
- /usr/include/c++/12/ext/string_conversions.h /usr/include/c++/12/cstdio \
- /usr/include/c++/12/cerrno /usr/include/errno.h \
- /usr/include/arm-linux-gnueabihf/bits/errno.h /usr/include/linux/errno.h \
- /usr/lib/linux/uapi/arm/asm/errno.h /usr/include/asm-generic/errno.h \
- /usr/include/asm-generic/errno-base.h \
+ /usr/include/c++/12/ext/string_conversions.h /usr/include/c++/12/cerrno \
+ /usr/include/errno.h /usr/include/arm-linux-gnueabihf/bits/errno.h \
+ /usr/include/linux/errno.h /usr/lib/linux/uapi/arm/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/arm-linux-gnueabihf/bits/types/error_t.h \
  /usr/include/c++/12/bits/charconv.h \
  /usr/include/c++/12/bits/basic_string.tcc \
