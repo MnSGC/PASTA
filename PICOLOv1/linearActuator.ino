@@ -49,8 +49,7 @@ void Actuatorsetup() {
 }
 
 float posMap(int pos,int min,int max){
-  truePos = (pos - min) * (5.0 / (max - min));
-  return truePos;
+  return (float)(pos - min) * (5.0 / (max - min));
 }
 // Moves actuator in a direction at duty cycle
 void moveActuator(bool extend) {
@@ -77,11 +76,15 @@ void resetActuator() {
     }
     else {
       stopActuator();
-      break;  // Exit loop when within range
+      printOLED("Actuator reset properly");
+      delay(100);
+      return;  // Exit loop when within range
     }
-
     delay(50);  // Give time for motor to move
   }
+  // idk if this should be in an if statement for when this should happen
+  stopActuator();
+  printOLED("Reset completed");
 }
 
 void updateLinearActuator() {  
