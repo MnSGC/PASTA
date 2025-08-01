@@ -13,46 +13,46 @@ void Controlwheelsetup() {
   
   // Initialize reaction wheel servo
   pinMode(SERVO_PIN, OUTPUT);
-  analogWriteFreq(50);  // Set PWM frequency to 50 Hz (20ms period)
+  myServo.attach(14);
+  analogWriteFreq(50);
+  analogWriteRange(20000);  // 20ms period (for 50Hz)  // Set PWM frequency to 50 Hz (20ms period)
   delay(1000);  // Allow servo to initialize
   
      printOLED("Starting sweep test...");
 
     // Full reverse (~1ms pulse → ~5% duty cycle)
-    analogWrite(SERVO_PIN, 26);
+    myServo.write(180);;
     digitalWrite(LED_R, HIGH);
     printOLED("Full reverse"); // change back to serial print
     delay(2000);
 
     // Stop (~1.5ms pulse → ~7.5% duty cycle)
-    analogWrite(SERVO_PIN, 38);
+    myServo.write(90);
     digitalWrite(LED_R, LOW);
     printOLED("Stop");
     delay(2000);
 
     // Full forward (~2ms pulse → ~10% duty cycle)
-    analogWrite(SERVO_PIN, 51);
+    myServo.write(0);
     digitalWrite(LED_L, HIGH);
     printOLED("Full forward");
     delay(2000);
 
     // Stop again
-    analogWrite(SERVO_PIN, 38);
+    myServo.write(90);
     digitalWrite(LED_L, LOW);
     printOLED("Stop");
     delay(2000);
 
     printOLED("Servo test complete.");
+    
 }
 
 void setServoSpeed(int speed) {
-    // Map speed (-100 to 100) to pulse width (1000 to 2000 µs)
-    int pulseWidth = map(speed, -100, 100, 1000, 2000);
-    
-    // Convert pulse width to duty cycle (0-255 for Pico's analogWrite)
-    int dutyCycle = map(pulseWidth, 1000, 2000, 26, 51);  // ~5% to ~10% duty cycle
-
-    analogWrite(14, dutyCycle);  // Set PWM output
+  // speed should be in range -100 to 100 for PID control
+  speed = constrain(speed, -MAX_SERVO_SPEED, MAX_SERVO_SPEED);
+  int angle = map(speed, -MAX_SERVO_SPEED, MAX_SERVO_SPEED, 180, 0);  // 180 = full reverse, 0 = full forward
+  myServo.write(angle);
 }
 
 float calculateHeadingError(float current, float target) {
@@ -65,40 +65,27 @@ float calculateHeadingError(float current, float target) {
 
 float calculatePID(float error) {
   unsigned long currentTime = millis();
-  float deltaTime = (currentTime - previousTime) / 1000.0;  // Convert to seconds
-  
+  float deltaTime = (currentTime - previousTime) / 1000.0;
+
   // Proportional term
-  float proportional = 0;
-  proportional = KP * error;
-  
+  float proportional = KP * error;
+
   // Integral term (with anti-windup)
   integral += KI * error * deltaTime;
   integral = constrain(integral, -MAX_SERVO_SPEED, MAX_SERVO_SPEED);
-  
+
   // Derivative term
   float derivative = 0;
   if (deltaTime > 0) {
     derivative = KD * (error - previousError) / deltaTime;
   }
-  
+
   // Calculate total output
   float output = proportional + integral + derivative;
-  
+
   // Update variables for next iteration
   previousError = error;
   previousTime = currentTime;
-  
-  return output;
-}
 
-int mapPIDToServo(float pidOutput) {
-  // Constrain PID output to servo range
-  pidOutput = constrain(pidOutput, -MAX_SERVO_SPEED, MAX_SERVO_SPEED);
-  
-  // Map PID output to servo command
-  int servoCommand = NEUTRAL_SERVO + pidOutput;
-  servoCommand = constrain(servoCommand, MIN_SERVO_SPEED, MAX_SERVO_SPEED);
-  
-  return servoCommand;
+  return constrain(output, -MAX_SERVO_SPEED, MAX_SERVO_SPEED);
 }
-

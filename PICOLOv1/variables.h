@@ -139,7 +139,8 @@ double vertVelM = 0;
 double vertVelFt = 0;
 
 // Additional variables here
-int servoCommand = 0;
+int speed = 0;
+int angle = 0;
 int n = 0;
 int integral = 0;
 int previousError = 0;

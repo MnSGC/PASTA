@@ -11,7 +11,11 @@ This file contains the Setup and Update functions for the entire system. The cod
 // System wide setup function.
 
 void systemSetup() {
-
+  pinMode(BIN1, OUTPUT);
+  pinMode(BIN2, OUTPUT);
+  pinMode(PWMB, OUTPUT);
+  pinMode(STBY, OUTPUT);
+  digitalWrite(STBY, HIGH); // Wake up motor driver
   Serial.begin(SERIAL_BAUD);
   Serial1.begin(19200);
 
@@ -149,8 +153,6 @@ void systemUpdate(){
   //Addtional sensor update code here.
 
 
-  servoCommand = 0; //sets initial servo speed to 0
-
   val = digitalRead(6);
   tiltVal = digitalRead(7);
   analogRead(feedbackPin);
@@ -166,9 +168,8 @@ void systemUpdate(){
     float controlOutput = calculatePID(error);
     torque = accelerometer[2] * torqueKP;
     // Convert PID output to servo command
-    servoCommand = mapPIDToServo(controlOutput); //function that maps the calculated PID output to servo control
-    servoCommand = servoCommand + torque;
-    setServoSpeed(servoCommand);
+    float pidOutput = calculatePID(error);
+    setServoSpeed(pidOutput);
 
     if(panOffset < -20 && pixy.ccc.numBlocks > 0){
       digitalWrite(LED_R, HIGH);
@@ -184,12 +185,21 @@ void systemUpdate(){
 
   } else{
     mode = "Idle"; //sets system mode to idle
-    servoCommand = 0; //sets initial servo speed to 0
+    angle = 0; //sets initial servo speed to 0
   }
   
   if (tiltVal == HIGH) {
+      Serial.println("linear actuator engaged");
       tiltMode = "Tilt";
       updateLinearActuator();
+      // digitalWrite(BIN1, HIGH);
+      // digitalWrite(BIN2, LOW );
+      // analogWrite(PWMB, moveDuty);  // 20% duty
+      // delay(5000);
+      // digitalWrite(BIN1, LOW);
+      // digitalWrite(BIN2, HIGH);
+      // analogWrite(PWMB, moveDuty);  // 20% duty
+      // delay(5000);
     }
     else{
       tiltMode = "Idle";

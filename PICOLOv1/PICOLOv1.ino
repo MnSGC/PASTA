@@ -32,6 +32,7 @@ _____________________________________________________________
 
 #include <Pixy2UART.h>
 Pixy2UART pixy;
+Servo myServo;
 
 #define GPS_RUN_RATE    2.0 // Max GPS update speed in Hz. May not update at this speed.
 #define DATA_RATE 10000 // Max rate of data aqusition in Hz. Set to 100 or some huge number to remove the limiter
@@ -95,9 +96,9 @@ void loop() {
     data.concat(mode);
     data.concat(",");
     OLEDstr.concat("Mode:" + String(mode) + ", " + String(tiltMode) + "\n");
-    data.concat(servoCommand);
+    data.concat(angle);
     data.concat(",");
-    OLEDstr.concat("Speed: " + String(servoCommand) + "," + "linPos:" + (pos) + "\n");
+    OLEDstr.concat("Speed: " + String(angle) + "," + "linPos:" + (pos) + "\n");
     data.concat(",");
     data.concat(HHMMSS);
     data.concat(",");
@@ -262,7 +263,7 @@ void loop() {
       data form additional sensors
     */
 
-    Serial.println(data);
+    // Serial.println(data);
     SDstatus = logData(data, dataFilename);
     
     if (!SDstatus) {      

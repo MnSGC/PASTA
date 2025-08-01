@@ -47,7 +47,7 @@ void Pixyupdate()
     i++;
     
     if (i%60==0)
-      Serial.println(i);   
+      // Serial.println(i);   
     
     // calculate pan and tilt "errors" with respect to first object (blocks[0]), 
     // which is the biggest object (they are sorted by size).  
@@ -63,18 +63,18 @@ void Pixyupdate()
     errorZ = tiltOffset;
 
     //set BNO backup orientation
-    if(-10 < panOffset < 10 && !setState){
-      setState = true;
-      sensors_event_t event;
-      BACKUP = bno.getEvent(&event);
-    }
+    // if(-10 < panOffset < 10 && !setState){
+    //   setState = true;
+    //   sensors_event_t event;
+    //   BACKUP = bno.getEvent(&event);
+    // }
 
     Serial.print(panOffset + ", ");
-    Serial.println(tiltOffset);
+    // Serial.println(tiltOffset);
   
 #if 0 // for debugging
     sprintf(buf, "%ld %ld %ld %ld", rotateLoop.m_command, translateLoop.m_command, left, right);
-    Serial.println(buf);   
+    // Serial.println(buf);   
 #endif
 /*
   }  
