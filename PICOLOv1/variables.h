@@ -137,14 +137,16 @@ double relAltM = 0;
 double relAltFt = 0;
 double vertVelM = 0;
 double vertVelFt = 0;
+double timeFalling = 0;
+bool runState = 1;
 
 // Additional variables here
 int speed = 0;
-int angle = 0;
+int angle = 90;
 int n = 0;
 int integral = 0;
 int previousError = 0;
-int error = 0;
+int32_t error = 0;
 int torque = 0;
 int torqueKP = .5;
 
@@ -171,11 +173,12 @@ float BACKUP = 0;
 bool setZState = false;
 float BACKUPZ = 0;
 
-// Pixy variables 
-static int i = 0;
-int j;
-char buf[64]; 
-int32_t panOffset, tiltOffset;
+// // Pixy variables 
+// static int i = 0;
+// int j;
+// char buf[64]; 
+int32_t panOffset; 
+int32_t tiltOffset = 0;
 
 // Actuator Variables
 const int feedbackPin = 28;
@@ -194,6 +197,8 @@ String tiltMode = "Idle";
 // float ax = accelerometer[0]; // X-axis acceleration
 // float ay = accelerometer[1]; // Y-axis acceleration
 // float az = accelerometer[2]; // Z-axis acceleration
-// float pitch = atan2(-ax, sqrt(ay * ay + az * az)) * 180.0 / PI;
+// float pitch = 0;
+
+
 
 

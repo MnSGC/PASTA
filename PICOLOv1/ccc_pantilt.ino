@@ -33,12 +33,13 @@ void Pixysetup()
 
 void Pixyupdate()
 {  
-  /*
+  
   static int i = 0;
   int j;
   char buf[64]; 
-  int32_t panOffset, tiltOffset;
-  */
+  // int32_t panOffset = 0;
+  // int32_t tiltOffset = 0;
+  
   // get active blocks from Pixy
   pixy.ccc.getBlocks();
   
@@ -46,12 +47,15 @@ void Pixyupdate()
   {        
     i++;
     
-    if (i%60==0)
+    //if (i%60==0)
       // Serial.println(i);   
     
     // calculate pan and tilt "errors" with respect to first object (blocks[0]), 
     // which is the biggest object (they are sorted by size).  
-    panOffset = (int32_t)pixy.frameWidth/2 - (int32_t)pixy.ccc.blocks[0].m_x;
+    panOffset = ((int32_t)pixy.frameWidth/2) - (int32_t)pixy.ccc.blocks[0].m_x;
+    Serial.println("panoffset: " + String(panOffset));
+    Serial.println("pixy.ccc.blocks: " + String(pixy.ccc.blocks[0].m_x));
+    Serial.println("frameWidth: " + String(pixy.frameWidth));
     tiltOffset = (int32_t)pixy.ccc.blocks[0].m_y - (int32_t)pixy.frameHeight/2;  
   
     // update loops
@@ -63,29 +67,42 @@ void Pixyupdate()
     errorZ = tiltOffset;
 
     //set BNO backup orientation
-    // if(-10 < panOffset < 10 && !setState){
-    //   setState = true;
-    //   sensors_event_t event;
-    //   BACKUP = bno.getEvent(&event);
-    // }
+    if(-10 < panOffset < 10 && !setState){
+      setState = true;
+      sensors_event_t event;
+      bno.getEvent(&event);
+      BACKUP = orientation[0];
+    }
 
-    Serial.print(panOffset + ", ");
+    
+  
     // Serial.println(tiltOffset);
   
 #if 0 // for debugging
     sprintf(buf, "%ld %ld %ld %ld", rotateLoop.m_command, translateLoop.m_command, left, right);
     // Serial.println(buf);   
 #endif
-/*
+
   }  
   else // no object detected, go into reset state
   {
     panLoop.reset();
     tiltLoop.reset();
     //pixy.setServos(panLoop.m_command, tiltLoop.m_command);
-  }
-}
-*/
+    // Serial.println(String(BACKUP));
+    // Serial.println(String(orientation[0]));
+    if(setState){
+      error = (int32_t) (calculateHeadingError(orientation[0], BACKUP) * 0.875);
+      Serial.println("BACKUP: " + String(BACKUP));
+      Serial.println("Orientation: " + String(orientation[0]));
+      Serial.println("error: " + String(error));
+    }else{
+      error += 10;
+    }
+
+
 
   }
 }
+
+

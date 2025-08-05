@@ -57,9 +57,22 @@ void setServoSpeed(int speed) {
 
 float calculateHeadingError(float current, float target) {
   // Normalize the error to -180 to 180 range
+  
+  if(180 < target < 360){
+    target -= 360;
+  }
+  if(180 < current < 360){
+    current -= 360;
+  }
+
   float error = target - current;
-  while (error > 180) error -= 360;
-  while (error < -180) error += 360;
+  if(error > 180){
+    error -= 360;
+  }else if(error < -180){
+    error += 360;
+  }
+  // if (error > 180) error -= 360;
+  // if (error < -180) error += 360;
   return error;
 }
 

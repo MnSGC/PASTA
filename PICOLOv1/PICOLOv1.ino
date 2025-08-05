@@ -77,7 +77,7 @@ bool usingM8N = true; // true for M8N, false for M9N
 
 // File header. Edit to add columns for other sensors.
 
-String header = "Mode,ServoCommand,hh:mm:ss,T(min),T(s),T(ms),Hz,ExtT(F),ExtT(C),IntT(F),IntT(C),Pa,kPa,ATM,PSI,MSTemp(C),MSTemp(F),Alt SL Ft,Alt SL M,Alt Rel Ft,Alt Rel M,VertVel(ft/s),VertVel(m/s),Accel(x),Accel(y),Accel(z),Deg/S(x),Deg/S(y),Deg/S(z),Ori(x),Ori(y),Ori(z),Mag_T(x),Mag_T(y),Mag_T(z)z,Error,Backup Orientation,Blocks,linear Pos, Version:" + String(VERSION);
+String header = "Mode, Tilt Mode, Servo Angle,hh:mm:ss,T(min),T(s),T(ms),Hz,ExtT(F),ExtT(C),IntT(F),IntT(C),Pa,kPa,ATM,PSI,MSTemp(C),MSTemp(F),Alt SL Ft,Alt SL M,Alt Rel Ft,Alt Rel M,VertVel(ft/s),VertVel(m/s),Accel(x),Accel(y),Accel(z),Deg/S(x),Deg/S(y),Deg/S(z),Ori(x),Ori(y),Ori(z),Mag_T(x),Mag_T(y),Mag_T(z)z,Error,Backup Orientation,Blocks,linear Pos, Version:" + String(VERSION);
 
 void setup() {
   systemSetup();
@@ -95,7 +95,9 @@ void loop() {
     
     data.concat(mode);
     data.concat(",");
-    OLEDstr.concat("Mode:" + String(mode) + ", " + String(tiltMode) + "\n");
+    data.concat(tiltMode);
+    data.concat(",");
+    OLEDstr.concat("Mode:" + String(mode) + "," + String(tiltMode) + "\n");
     data.concat(angle);
     data.concat(",");
     OLEDstr.concat("Speed: " + String(angle) + "," + "linPos:" + (pos) + "\n");
@@ -252,8 +254,8 @@ void loop() {
     data.concat(",");
     data.concat(String(magnetometer[2]));
     data.concat(",");
-    data.concat(String(panOffset));
-    OLEDstr.concat(String("pan:") + panOffset + " " + String("tilt:") + tiltOffset + "\n");
+    data.concat(String(error));
+    OLEDstr.concat(String("pan:") + error + " " + String("tilt:") + errorZ + "\n");
     data.concat(String(BACKUP));
     OLEDstr.concat(String("Backup:") + BACKUP + "\n");
     data.concat(String(pixy.ccc.numBlocks));
