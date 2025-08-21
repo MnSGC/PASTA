@@ -200,6 +200,20 @@ pan_tilt_demo/fast:
 	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/build
 .PHONY : pan_tilt_demo/fast
 
+# Convenience name for target.
+examples/CMakeFiles/pan_tilt_servo.dir/rule:
+	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/pan_tilt_servo.dir/rule
+.PHONY : examples/CMakeFiles/pan_tilt_servo.dir/rule
+
+# Convenience name for target.
+pan_tilt_servo: examples/CMakeFiles/pan_tilt_servo.dir/rule
+.PHONY : pan_tilt_servo
+
+# fast build rule for target.
+pan_tilt_servo/fast:
+	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/build
+.PHONY : pan_tilt_servo/fast
+
 chirp_command_cpp_demo.o: chirp_command_cpp_demo.cpp.o
 .PHONY : chirp_command_cpp_demo.o
 
@@ -344,6 +358,30 @@ pan_tilt_demo.cpp.s:
 	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.s
 .PHONY : pan_tilt_demo.cpp.s
 
+pan_tilt_servo.o: pan_tilt_servo.cpp.o
+.PHONY : pan_tilt_servo.o
+
+# target to build an object file
+pan_tilt_servo.cpp.o:
+	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o
+.PHONY : pan_tilt_servo.cpp.o
+
+pan_tilt_servo.i: pan_tilt_servo.cpp.i
+.PHONY : pan_tilt_servo.i
+
+# target to preprocess a source file
+pan_tilt_servo.cpp.i:
+	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.i
+.PHONY : pan_tilt_servo.cpp.i
+
+pan_tilt_servo.s: pan_tilt_servo.cpp.s
+.PHONY : pan_tilt_servo.s
+
+# target to generate assembly for a file
+pan_tilt_servo.cpp.s:
+	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.s
+.PHONY : pan_tilt_servo.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -358,6 +396,7 @@ help:
 	@echo "... get_raw_frame"
 	@echo "... get_rgb_demo"
 	@echo "... pan_tilt_demo"
+	@echo "... pan_tilt_servo"
 	@echo "... chirp_command_cpp_demo.o"
 	@echo "... chirp_command_cpp_demo.i"
 	@echo "... chirp_command_cpp_demo.s"
@@ -376,6 +415,9 @@ help:
 	@echo "... pan_tilt_demo.o"
 	@echo "... pan_tilt_demo.i"
 	@echo "... pan_tilt_demo.s"
+	@echo "... pan_tilt_servo.o"
+	@echo "... pan_tilt_servo.i"
+	@echo "... pan_tilt_servo.s"
 .PHONY : help
 
 
