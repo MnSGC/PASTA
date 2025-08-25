@@ -135,7 +135,8 @@ void sendServoPulse(int h, int highTime_us) {
   } else {
     cout << "lgTxBusy Failed: " << checkQueue << endl; //returns - num if failed
   }
-      
+
+  sleep(5000); // pauses after queue is cleared
   
   int result = lgTxPulse(h, SERVO_GPIO, highTime_us, lowTime_us, 0, 1); // queue is full, based on -96 error being returned, check the library at the bottom for error nums
   if (result < 0) {
