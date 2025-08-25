@@ -23,8 +23,8 @@
 #define PI 0.0
 #define KD 0.0
 
-std::atomic<int> currentSpeed(0); // shared speed for servo thread
-std::atomic<bool> servoRunning(true);
+
+bool servoRunning(true);
 
 using namespace std;
 
