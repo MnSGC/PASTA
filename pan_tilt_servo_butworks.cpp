@@ -124,10 +124,10 @@ int speedToPulseWidth(int speed, int handle, int GPIO) {
 void sendServoPulse(int h, int highTime_us) {
   int lowTime_us = PWM_PERIOD_US - highTime_us;
   
-  lgTxPulse(handle, SERVO_GPIO, 0, 0, 0, 0); // trying to flush the queue here
+  lgTxPulse(h, SERVO_GPIO, 0, 0, 0, 0); // trying to flush the queue here
 
   // makes sure previous transmission is done, checks if GPIO has something in it.
-  checkQueue = lgTxBusy(handle, SERVO_GPIO, LG_TX_PWM);
+  int checkQueue = lgTxBusy(h, SERVO_GPIO, LG_TX_PWM);
   if(checkQueue > 0) {
     cout << "Queue is busy" << endl; // returns a 1 if busy
   } else if (checkQueue == 0) {
