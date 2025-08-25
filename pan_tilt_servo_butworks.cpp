@@ -239,7 +239,7 @@ int main() {
 
   // Cleanup
   servoRunning = false;
-  pthread_join(servoThread, NULL);
+  pthread_join(servo, NULL);
 
   lgGpioWrite(handle, AIN1, 0);
   lgGpioWrite(handle, AIN2, 0);
