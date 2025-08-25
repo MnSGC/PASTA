@@ -114,7 +114,7 @@ int16_t acquireBlock()
 }
 
 // Map speed (-100 to 100) to pulse width (1000 to 2000 us)
-int speedToPulseWidth(int speed, int handle, int GPIO) {
+int speedToPulseWidth(int speed) {
   if (speed < -100) speed = -100;
   if (speed > 100) speed = 100;
   return STOP_PW + ((MAX_PW - STOP_PW) * speed)/ 100;
@@ -146,7 +146,7 @@ void sendServoPulse(int h, int highTime_us) {
 void* servoThread(void *arg) {
   int handle = *((int *) arg); //retrie handle from main
   while(servoRunning) {
-      int pulseWidth = speedToPulseWidth(currentSpeed, handle, SERVO_GPIO);
+      int pulseWidth = speedToPulseWidth(currentSpeed);
       std::cout << pulseWidth << std::enld;
       sendServoPulse(handle, pulseWidth);
   }  
