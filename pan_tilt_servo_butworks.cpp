@@ -117,14 +117,26 @@ int16_t acquireBlock()
 int speedToPulseWidth(int speed, int handle, int GPIO) {
   if (speed < -100) speed = -100;
   if (speed > 100) speed = 100;
-
-  lgTxPulse(handle, GPIO, 0, 0, 0, 0); // trying to flush the queue here
   return STOP_PW + ((MAX_PW - STOP_PW) * speed)/ 100;
 }
 
 // Send one PWM pulse
 void sendServoPulse(int h, int highTime_us) {
   int lowTime_us = PWM_PERIOD_US - highTime_us;
+  
+  lgTxPulse(handle, SERVO_GPIO, 0, 0, 0, 0); // trying to flush the queue here
+
+  // makes sure previous transmission is done, checks if GPIO has something in it.
+  checkQueue = lgTxBusy(handle, SERVO_GPIO, LG_TX_PWM);
+  if(checkQueue > 0) {
+    cout << "Queue is busy" << endl; // returns a 1 if busy
+  } else if (checkQueue == 0) {
+    cout << "Queue is empty" << endl; // returns a 0 if empty
+  } else {
+    cout << "lgTxBusy Failed: " << checkQueue << endl; //returns - num if failed
+  }
+      
+  
   int result = lgTxPulse(h, SERVO_GPIO, highTime_us, lowTime_us, 0, 1); // queue is full, based on -96 error being returned, check the library at the bottom for error nums
   if (result < 0) {
      std::cerr << "LgTxPulse failed: " << result << std::endl;
