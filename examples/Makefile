@@ -194,6 +194,32 @@ pan_tilt_demo/fast:
 	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/build
 .PHONY : pan_tilt_demo/fast
 
+#=============================================================================
+# Target rules for targets named pan_tilt_servo
+
+# Build rule for target.
+pan_tilt_servo: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pan_tilt_servo
+.PHONY : pan_tilt_servo
+
+# fast build rule for target.
+pan_tilt_servo/fast:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/build
+.PHONY : pan_tilt_servo/fast
+
+#=============================================================================
+# Target rules for targets named new_test_servo
+
+# Build rule for target.
+new_test_servo: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 new_test_servo
+.PHONY : new_test_servo
+
+# fast build rule for target.
+new_test_servo/fast:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/build
+.PHONY : new_test_servo/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -207,7 +233,9 @@ help:
 	@echo "... get_lines_cpp_demo"
 	@echo "... get_raw_frame"
 	@echo "... get_rgb_demo"
+	@echo "... new_test_servo"
 	@echo "... pan_tilt_demo"
+	@echo "... pan_tilt_servo"
 .PHONY : help
 
 

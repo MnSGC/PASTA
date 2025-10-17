@@ -6,5 +6,7 @@
 /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples/CMakeFiles/get_raw_frame.dir
 /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples/CMakeFiles/get_rgb_demo.dir
 /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples/CMakeFiles/pan_tilt_demo.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples/CMakeFiles/pan_tilt_servo.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples/CMakeFiles/new_test_servo.dir
 /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples/CMakeFiles/edit_cache.dir
 /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples/CMakeFiles/rebuild_cache.dir

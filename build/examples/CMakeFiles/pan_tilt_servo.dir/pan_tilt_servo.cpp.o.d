@@ -1,6 +1,7 @@
 examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: \
  /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/pan_tilt_servo.cpp \
- /usr/include/stdc-predef.h /usr/include/c++/12/cstdint \
+ /usr/include/stdc-predef.h /usr/include/c++/12/atomic \
+ /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/arm-linux-gnueabihf/c++/12/bits/c++config.h \
  /usr/include/arm-linux-gnueabihf/c++/12/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -21,8 +22,31 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: \
  /usr/include/arm-linux-gnueabihf/bits/wchar.h \
  /usr/include/arm-linux-gnueabihf/bits/stdint-intn.h \
  /usr/include/arm-linux-gnueabihf/bits/stdint-uintn.h \
- /usr/include/c++/12/cstdio /usr/include/stdio.h \
+ /usr/include/c++/12/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/12/bits/move.h /usr/include/c++/12/type_traits \
+ /usr/include/c++/12/bits/chrono.h /usr/include/c++/12/ratio \
+ /usr/include/c++/12/cstdint /usr/include/c++/12/limits \
+ /usr/include/c++/12/ctime /usr/include/time.h \
  /usr/lib/gcc/arm-linux-gnueabihf/12/include/stddef.h \
+ /usr/include/arm-linux-gnueabihf/bits/time.h \
+ /usr/include/arm-linux-gnueabihf/bits/timex.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/struct_timeval.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/clock_t.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/time_t.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/struct_tm.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/struct_timespec.h \
+ /usr/include/arm-linux-gnueabihf/bits/endian.h \
+ /usr/include/arm-linux-gnueabihf/bits/endianness.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/clockid_t.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/timer_t.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/struct_itimerspec.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/locale_t.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/__locale_t.h \
+ /usr/include/c++/12/bits/parse_numbers.h \
+ /usr/include/c++/12/ext/numeric_traits.h \
+ /usr/include/c++/12/bits/cpp_type_traits.h \
+ /usr/include/c++/12/ext/type_traits.h /usr/include/c++/12/cstddef \
+ /usr/include/c++/12/cstdio /usr/include/stdio.h \
  /usr/lib/gcc/arm-linux-gnueabihf/12/include/stdarg.h \
  /usr/include/arm-linux-gnueabihf/bits/types/__fpos_t.h \
  /usr/include/arm-linux-gnueabihf/bits/types/__mbstate_t.h \
@@ -34,17 +58,12 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: \
  /usr/include/arm-linux-gnueabihf/bits/stdio_lim.h \
  /usr/include/arm-linux-gnueabihf/bits/floatn.h \
  /usr/include/arm-linux-gnueabihf/bits/floatn-common.h \
- /usr/include/arm-linux-gnueabihf/bits/stdio.h \
- /usr/include/c++/12/csignal /usr/include/signal.h \
+ /usr/include/arm-linux-gnueabihf/bits/stdio.h /usr/include/signal.h \
  /usr/include/arm-linux-gnueabihf/bits/signum-generic.h \
  /usr/include/arm-linux-gnueabihf/bits/signum-arch.h \
  /usr/include/arm-linux-gnueabihf/bits/types/sig_atomic_t.h \
  /usr/include/arm-linux-gnueabihf/bits/types/sigset_t.h \
  /usr/include/arm-linux-gnueabihf/bits/types/__sigset_t.h \
- /usr/include/arm-linux-gnueabihf/bits/types/struct_timespec.h \
- /usr/include/arm-linux-gnueabihf/bits/endian.h \
- /usr/include/arm-linux-gnueabihf/bits/endianness.h \
- /usr/include/arm-linux-gnueabihf/bits/types/time_t.h \
  /usr/include/arm-linux-gnueabihf/bits/types/siginfo_t.h \
  /usr/include/arm-linux-gnueabihf/bits/types/__sigval_t.h \
  /usr/include/arm-linux-gnueabihf/bits/siginfo-arch.h \
@@ -81,17 +100,7 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: \
  /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/arm-linux-gnueabihf/bits/sched.h \
  /usr/include/arm-linux-gnueabihf/bits/types/struct_sched_param.h \
- /usr/include/arm-linux-gnueabihf/bits/cpu-set.h /usr/include/time.h \
- /usr/include/arm-linux-gnueabihf/bits/time.h \
- /usr/include/arm-linux-gnueabihf/bits/timex.h \
- /usr/include/arm-linux-gnueabihf/bits/types/struct_timeval.h \
- /usr/include/arm-linux-gnueabihf/bits/types/clock_t.h \
- /usr/include/arm-linux-gnueabihf/bits/types/struct_tm.h \
- /usr/include/arm-linux-gnueabihf/bits/types/clockid_t.h \
- /usr/include/arm-linux-gnueabihf/bits/types/timer_t.h \
- /usr/include/arm-linux-gnueabihf/bits/types/struct_itimerspec.h \
- /usr/include/arm-linux-gnueabihf/bits/types/locale_t.h \
- /usr/include/arm-linux-gnueabihf/bits/types/__locale_t.h \
+ /usr/include/arm-linux-gnueabihf/bits/cpu-set.h \
  /usr/include/arm-linux-gnueabihf/bits/setjmp.h \
  /usr/include/arm-linux-gnueabihf/bits/types/struct___jmp_buf_tag.h \
  /usr/include/arm-linux-gnueabihf/bits/pthread_stack_min-dynamic.h \
@@ -130,8 +139,10 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: \
  /usr/local/include/libpixy2/util.h /usr/local/include/libpixy2/TPixy2.h \
  /usr/local/include/libpixy2/Pixy2CCC.h \
  /usr/local/include/libpixy2/Pixy2Line.h \
- /usr/local/include/libpixy2/Pixy2Video.h /usr/include/c++/12/iostream \
- /usr/include/c++/12/ostream /usr/include/c++/12/ios \
+ /usr/local/include/libpixy2/Pixy2Video.h \
+ /usr/local/include/libpixy2/PIDLoop.h \
+ /usr/local/include/libpixy2/TPixy2.h /usr/include/c++/12/fstream \
+ /usr/include/c++/12/istream /usr/include/c++/12/ios \
  /usr/include/c++/12/iosfwd /usr/include/c++/12/bits/stringfwd.h \
  /usr/include/c++/12/bits/memoryfwd.h /usr/include/c++/12/bits/postypes.h \
  /usr/include/c++/12/cwchar /usr/include/wchar.h \
@@ -142,9 +153,7 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: \
  /usr/include/c++/12/bits/exception_defines.h \
  /usr/include/c++/12/bits/cxxabi_init_exception.h \
  /usr/include/c++/12/typeinfo /usr/include/c++/12/bits/hash_bytes.h \
- /usr/include/c++/12/new /usr/include/c++/12/bits/move.h \
- /usr/include/c++/12/type_traits \
- /usr/include/c++/12/bits/nested_exception.h \
+ /usr/include/c++/12/new /usr/include/c++/12/bits/nested_exception.h \
  /usr/include/c++/12/bits/char_traits.h \
  /usr/include/c++/12/bits/localefwd.h \
  /usr/include/arm-linux-gnueabihf/c++/12/bits/c++locale.h \
@@ -161,7 +170,6 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: \
  /usr/include/arm-linux-gnueabihf/c++/12/bits/c++allocator.h \
  /usr/include/c++/12/bits/new_allocator.h \
  /usr/include/c++/12/bits/functexcept.h \
- /usr/include/c++/12/bits/cpp_type_traits.h \
  /usr/include/c++/12/bits/ostream_insert.h \
  /usr/include/c++/12/bits/cxxabi_forced.h \
  /usr/include/c++/12/bits/stl_iterator_base_types.h \
@@ -169,11 +177,9 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: \
  /usr/include/c++/12/bits/concept_check.h \
  /usr/include/c++/12/debug/assertions.h \
  /usr/include/c++/12/bits/stl_iterator.h \
- /usr/include/c++/12/ext/type_traits.h \
  /usr/include/c++/12/bits/ptr_traits.h \
  /usr/include/c++/12/bits/stl_function.h \
  /usr/include/c++/12/backward/binders.h \
- /usr/include/c++/12/ext/numeric_traits.h \
  /usr/include/c++/12/bits/stl_algobase.h \
  /usr/include/c++/12/bits/stl_pair.h /usr/include/c++/12/bits/utility.h \
  /usr/include/c++/12/debug/debug.h \
@@ -207,15 +213,16 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: \
  /usr/include/c++/12/bits/streambuf_iterator.h \
  /usr/include/arm-linux-gnueabihf/c++/12/bits/ctype_inline.h \
  /usr/include/c++/12/bits/locale_facets.tcc \
- /usr/include/c++/12/bits/basic_ios.tcc \
- /usr/include/c++/12/bits/ostream.tcc /usr/include/c++/12/istream \
- /usr/include/c++/12/bits/istream.tcc /usr/include/c++/12/atomic \
- /usr/include/c++/12/bits/atomic_base.h \
- /usr/include/c++/12/bits/atomic_lockfree_defines.h \
- /usr/include/c++/12/chrono /usr/include/c++/12/bits/chrono.h \
- /usr/include/c++/12/ratio /usr/include/c++/12/limits \
- /usr/include/c++/12/ctime /usr/include/c++/12/bits/parse_numbers.h \
+ /usr/include/c++/12/bits/basic_ios.tcc /usr/include/c++/12/ostream \
+ /usr/include/c++/12/bits/ostream.tcc \
+ /usr/include/c++/12/bits/istream.tcc /usr/include/c++/12/bits/codecvt.h \
+ /usr/include/arm-linux-gnueabihf/c++/12/bits/basic_file.h \
+ /usr/include/arm-linux-gnueabihf/c++/12/bits/c++io.h \
+ /usr/include/c++/12/bits/fstream.tcc /usr/include/c++/12/iostream \
  /usr/include/c++/12/thread /usr/include/c++/12/bits/std_thread.h \
  /usr/include/c++/12/tuple /usr/include/c++/12/bits/uses_allocator.h \
  /usr/include/c++/12/bits/unique_ptr.h \
- /usr/include/c++/12/bits/this_thread_sleep.h
+ /usr/include/c++/12/bits/this_thread_sleep.h \
+ /usr/include/arm-linux-gnueabihf/sys/wait.h \
+ /usr/include/arm-linux-gnueabihf/bits/types/idtype_t.h \
+ /usr/include/c++/12/chrono

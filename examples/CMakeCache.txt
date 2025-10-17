@@ -224,6 +224,9 @@ LIBUSB_1_INCLUDE_DIR:PATH=/usr/include/libusb-1.0
 //Path to a library.
 LIBUSB_1_LIBRARY:FILEPATH=/usr/lib/arm-linux-gnueabihf/libusb-1.0.so
 
+//Path to a library.
+lgpio_LIB:FILEPATH=/usr/local/lib/liblgpio.so
+
 //Value Computed by CMake
 pixy2_BINARY_DIR:STATIC=/home/mnsgc/pixy2_for_pi_using_steppermotor/examples
 

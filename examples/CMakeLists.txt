@@ -4,7 +4,9 @@ list(APPEND examples
         get_lines_cpp_demo
         get_raw_frame
         get_rgb_demo
-        pan_tilt_demo)
+        pan_tilt_demo
+        pan_tilt_servo
+        new_test_servo)
 
 foreach(demo IN LISTS examples)
     add_executable(${demo} ${demo}.cpp)

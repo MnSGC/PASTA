@@ -84,6 +84,8 @@ examples/all: examples/CMakeFiles/get_lines_cpp_demo.dir/all
 examples/all: examples/CMakeFiles/get_raw_frame.dir/all
 examples/all: examples/CMakeFiles/get_rgb_demo.dir/all
 examples/all: examples/CMakeFiles/pan_tilt_demo.dir/all
+examples/all: examples/CMakeFiles/pan_tilt_servo.dir/all
+examples/all: examples/CMakeFiles/new_test_servo.dir/all
 .PHONY : examples/all
 
 # Recursive "preinstall" directory target.
@@ -97,6 +99,8 @@ examples/clean: examples/CMakeFiles/get_lines_cpp_demo.dir/clean
 examples/clean: examples/CMakeFiles/get_raw_frame.dir/clean
 examples/clean: examples/CMakeFiles/get_rgb_demo.dir/clean
 examples/clean: examples/CMakeFiles/pan_tilt_demo.dir/clean
+examples/clean: examples/CMakeFiles/pan_tilt_servo.dir/clean
+examples/clean: examples/CMakeFiles/new_test_servo.dir/clean
 .PHONY : examples/clean
 
 #=============================================================================
@@ -236,7 +240,7 @@ examples/CMakeFiles/get_rgb_demo.dir/clean:
 examples/CMakeFiles/pan_tilt_demo.dir/all:
 	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/depend
 	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/CMakeFiles --progress-num=11,12 "Built target pan_tilt_demo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/CMakeFiles --progress-num=13,14 "Built target pan_tilt_demo"
 .PHONY : examples/CMakeFiles/pan_tilt_demo.dir/all
 
 # Build rule for subdir invocation for target.
@@ -254,6 +258,58 @@ pan_tilt_demo: examples/CMakeFiles/pan_tilt_demo.dir/rule
 examples/CMakeFiles/pan_tilt_demo.dir/clean:
 	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/clean
 .PHONY : examples/CMakeFiles/pan_tilt_demo.dir/clean
+
+#=============================================================================
+# Target rules for target examples/CMakeFiles/pan_tilt_servo.dir
+
+# All Build rule for target.
+examples/CMakeFiles/pan_tilt_servo.dir/all:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/depend
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/CMakeFiles --progress-num=15,16 "Built target pan_tilt_servo"
+.PHONY : examples/CMakeFiles/pan_tilt_servo.dir/all
+
+# Build rule for subdir invocation for target.
+examples/CMakeFiles/pan_tilt_servo.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/pan_tilt_servo.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/CMakeFiles 0
+.PHONY : examples/CMakeFiles/pan_tilt_servo.dir/rule
+
+# Convenience name for target.
+pan_tilt_servo: examples/CMakeFiles/pan_tilt_servo.dir/rule
+.PHONY : pan_tilt_servo
+
+# clean rule for target.
+examples/CMakeFiles/pan_tilt_servo.dir/clean:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/clean
+.PHONY : examples/CMakeFiles/pan_tilt_servo.dir/clean
+
+#=============================================================================
+# Target rules for target examples/CMakeFiles/new_test_servo.dir
+
+# All Build rule for target.
+examples/CMakeFiles/new_test_servo.dir/all:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/depend
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/CMakeFiles --progress-num=11,12 "Built target new_test_servo"
+.PHONY : examples/CMakeFiles/new_test_servo.dir/all
+
+# Build rule for subdir invocation for target.
+examples/CMakeFiles/new_test_servo.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/new_test_servo.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/CMakeFiles 0
+.PHONY : examples/CMakeFiles/new_test_servo.dir/rule
+
+# Convenience name for target.
+new_test_servo: examples/CMakeFiles/new_test_servo.dir/rule
+.PHONY : new_test_servo
+
+# clean rule for target.
+examples/CMakeFiles/new_test_servo.dir/clean:
+	$(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/clean
+.PHONY : examples/CMakeFiles/new_test_servo.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

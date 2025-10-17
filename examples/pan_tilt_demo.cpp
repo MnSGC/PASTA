@@ -22,12 +22,14 @@
 #include <PIDLoop.h>
 #include <pthread.h>
 #include <fstream>
+#include <stdexcept>
 #include <string>
 #include <iostream>
 #include <thread>
 #include <time.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <chrono>
 // #include "lg_mcp3008.h"
 
 #define AIN2 27
@@ -144,6 +146,9 @@ struct Thread_block{
   uint8_t is_tracking;
 };
 
+auto start = chrono::high_resolution_clock::now();
+double duration = 0;
+double run_time = 30;
 time_t timestamp;
 pthread_mutex_t mutex;
 pthread_mutex_t block_mutex;
@@ -182,7 +187,7 @@ int panToStep(int32_t panOffset){
 
 void* step (void *args){
 
-  while(run_flag){
+  while(run_flag && duration < run_time){
     pthread_mutex_lock(&mutex);
     Thread_args arguments =*((Thread_args *) args);
    	pthread_mutex_unlock(&mutex);
@@ -206,7 +211,7 @@ void* step (void *args){
 
 void * actuate (void *args){
   int v0;
-  while(run_flag){
+  while(run_flag && duration < run_time){
     
     pthread_mutex_lock(&mutex);
     Thread_args arguments =*((Thread_args *) args);
@@ -262,10 +267,12 @@ Block *trackBlock(uint8_t index)
   void* write_to_csv (void * args) {
     // char buf[64];
     fout.open("pixyData.csv", std::ios::out | std::ios::trunc);
-    fout << "H:M:S,block_index,signature,x location,y location,width,height \n";
+    fout << "H:M:S,signature,x location,y location,width,height \n";
     std::cout << "create csv file" << std::endl;
+    fout.close();
     int index;
-    while(run_flag){
+    while(run_flag && duration < run_time){
+      fout.open("pixyData.csv", std::ios::out | std::ios::app);
       timestamp = time(0);
     
       pthread_mutex_lock(&block_mutex);
@@ -281,21 +288,23 @@ Block *trackBlock(uint8_t index)
           // Block block = pixy.ccc.blocks[0];
           // pthread_mutex_unlock(&block_mutex);
           // std::cout << "writiting" << cur_block.m_signature << std::endl;
-          fout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "," << 
+          fout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "," <<
           cur_block.m_signature << "," << cur_block.m_x << "," 
           << cur_block.m_y << "," << cur_block.m_width << "," << 
           cur_block.m_height << "\n";
+          sleep(1);
           // std::cout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "," << 0 << "," << 
           // cur_block.m_signature << "," << cur_block.m_x << "," 
           // << cur_block.m_y << "," << cur_block.m_width << "," << 
           // cur_block.m_height << "\n";
          // fout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "," << 0 << "," << "\n"; 
-      }else{
-        
-          fout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "\n ";
       }
+      // else{
+        
+      fout.close();
+      //     fout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "\n ";
+      // }
     }
-    fout.close();
     return NULL;
       
   }
@@ -357,7 +366,9 @@ int main()
   // use ccc program to track objects
 
   pixy.changeProg("color_connected_components");
-  while(run_flag){
+  while(run_flag && duration < run_time){
+    auto duration_tick = chrono::high_resolution_clock::now() - start;
+    duration = chrono::duration_cast<chrono::duration<double>>(duration_tick).count();
     pixy.ccc.getBlocks();
 
     index=acquireBlock();
@@ -388,7 +399,7 @@ int main()
       // printf("entered her");
       panOffset = (int32_t)pixy.frameWidth/2 - (int32_t)block->m_x;
       tiltOffset = (int32_t)block->m_y - (int32_t)pixy.frameHeight/2;  
-      // v0 = MCP3008_read_single_ended(adc, 0);
+      // v0 = MCP3008_read_singlauto e_ended(_tickadc, 0);
       // printf("adc report: %d\n", v0);
       is_pan = 1;
       is_tilt = 1;

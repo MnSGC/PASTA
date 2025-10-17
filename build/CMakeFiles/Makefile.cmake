@@ -55,4 +55,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "examples/CMakeFiles/get_raw_frame.dir/DependInfo.cmake"
   "examples/CMakeFiles/get_rgb_demo.dir/DependInfo.cmake"
   "examples/CMakeFiles/pan_tilt_demo.dir/DependInfo.cmake"
+  "examples/CMakeFiles/pan_tilt_servo.dir/DependInfo.cmake"
+  "examples/CMakeFiles/new_test_servo.dir/DependInfo.cmake"
   )
