@@ -1,4 +1,4 @@
-# pixy2_for_pi_using_steppermotor
+# Pixy Assisted Solar Tracking Apparatus (PASTA)
  a modified version of pixy2 Pan_tilt using a stepper motor on a pi
 
 # Setup
