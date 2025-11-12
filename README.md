@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-This repository uses the PICOLO flight computer along with a pixy camera and a flywheel to track the sun. Also included are a linear actuator and a camera (currenty a goPro). the objectiv of the PASTA project is to use the pixy camera acting as the eyes with the flywheel and the linear actuator orientationg and tracking the sun. the end goal is to take pitures of the sun when it is undergoing an eclipse.
-=======
 # pixy2_for_pi_using_steppermotor
  a modified version of pixy2 Pan_tilt using a stepper motor on a pi
 
@@ -45,4 +42,3 @@ This should make all the files necessary, you can ignore the warnings as they ar
 Manuel Meraz's repository 
 
 https://github.com/ManuelMeraz/pixy2_example
->>>>>>> yoel_dev
