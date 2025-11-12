@@ -1,0 +1,12 @@
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/CMakeFiles/edit_cache.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/CMakeFiles/rebuild_cache.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/examples/CMakeFiles/chirp_command_cpp_demo.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/examples/CMakeFiles/get_blocks_cpp_demo.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/examples/CMakeFiles/get_lines_cpp_demo.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/examples/CMakeFiles/get_raw_frame.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/examples/CMakeFiles/get_rgb_demo.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/examples/CMakeFiles/pan_tilt_demo.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/examples/CMakeFiles/pan_tilt_servo.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/examples/CMakeFiles/new_test_servo.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/examples/CMakeFiles/edit_cache.dir
+/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/examples/CMakeFiles/rebuild_cache.dir

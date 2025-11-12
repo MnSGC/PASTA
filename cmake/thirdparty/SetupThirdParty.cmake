@@ -1,0 +1,12 @@
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/thirdparty/modules)
+
+find_package(LibUSB REQUIRED)
+add_library(libusb1 STATIC IMPORTED)
+set_target_properties(libusb1 PROPERTIES IMPORTED_LOCATION ${LIBUSB_1_LIBRARIES})
+set_target_properties(libusb1 PROPERTIES INTERFACE_INCLUDE_DIRECTORIES ${LIBUSB_1_INCLUDE_DIRS})
+
+find_package(Pixy2 REQUIRED)
+add_library(libpixy2 STATIC IMPORTED)
+set_target_properties(libpixy2 PROPERTIES IMPORTED_LOCATION ${LIBPIXY2_LIBRARIES})
+set_target_properties(libpixy2 PROPERTIES INTERFACE_INCLUDE_DIRECTORIES ${LIBPIXY2_INCLUDE_DIRS})
+
