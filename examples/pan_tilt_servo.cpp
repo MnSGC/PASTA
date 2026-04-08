@@ -216,9 +216,9 @@ void* servoThreadFunc(void *args) {
         
         int speed = is_pan == 1 ? pan_offset : 0;
         setServoSpeed(speed);
-        std::cout << "speed: " << speed << std::endl;
-        std::cout <<"pan_ofset: " << pan_offset << std::endl;
-        std::cout <<"tilt_offset: " << tilt_offset << std::endl;
+        // std::cout << "speed: " << speed << std::endl;
+        // std::cout <<"pan_ofset: " << pan_offset << std::endl;
+        // std::cout <<"tilt_offset: " << tilt_offset << std::endl;
         int pulseWidth = speedToPulseWidth(currentSpeed); //converts new speed using function, creates pulseWidth value
         sendServoPulse(handle, pulseWidth); 
     }
@@ -237,7 +237,7 @@ void * actuate (void *args){
    	pthread_mutex_unlock(&mutex);
    	
     //reads the position of the linear actuator
-    v0 = MCP3008_read_single_ended(arguments.adc, 0);
+    // v0 = MCP3008_read_single_ended(arguments.adc, 0);
 
     int handle = arguments.handle;
     int8_t is_tilt = arguments.is_tilt;
@@ -306,7 +306,7 @@ int main() {
     args.pan_offset = 0;
     args.is_tilt = 0;
     args.tilt_offset = 0;  
-    args.adc = adc;
+    args.adc = NULL;
 
     //setup handle_SIGINT as a signal handler
     signal(SIGINT, handle_SIGINT);
@@ -361,6 +361,7 @@ int main() {
           // printf("entered her");
           panOffset = (int32_t)pixy.frameWidth/2 - (int32_t)block->m_x;
           tiltOffset = (int32_t)block->m_y - (int32_t)pixy.frameHeight/2;  
+          std::cout << panOffset << std::endl;
           // v0 = MCP3008_read_singlauto e_ended(_tickadc, 0);
           // printf("adc report: %d\n", v0);
           is_pan = 1;

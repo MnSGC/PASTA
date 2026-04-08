@@ -1,7 +1,6 @@
 examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: \
- /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/pan_tilt_servo.cpp \
- /usr/include/stdc-predef.h /usr/include/c++/12/atomic \
- /usr/include/c++/12/bits/atomic_base.h \
+ /home/mnsgc/PASTA/examples/pan_tilt_servo.cpp /usr/include/stdc-predef.h \
+ /usr/include/c++/12/atomic /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/arm-linux-gnueabihf/c++/12/bits/c++config.h \
  /usr/include/arm-linux-gnueabihf/c++/12/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -95,9 +94,8 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: \
  /usr/include/arm-linux-gnueabihf/bits/struct_mutex.h \
  /usr/include/arm-linux-gnueabihf/bits/struct_rwlock.h \
  /usr/include/arm-linux-gnueabihf/bits/sigthread.h \
- /usr/include/arm-linux-gnueabihf/bits/signal_ext.h \
- /usr/local/include/lgpio.h /usr/include/inttypes.h \
- /usr/include/pthread.h /usr/include/sched.h \
+ /usr/include/arm-linux-gnueabihf/bits/signal_ext.h /usr/include/lgpio.h \
+ /usr/include/inttypes.h /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/arm-linux-gnueabihf/bits/sched.h \
  /usr/include/arm-linux-gnueabihf/bits/types/struct_sched_param.h \
  /usr/include/arm-linux-gnueabihf/bits/cpu-set.h \

@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/chirp_command_cpp_demo.cpp" "examples/CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.o" "gcc" "examples/CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.o.d"
+  "/home/mnsgc/PASTA/examples/chirp_command_cpp_demo.cpp" "examples/CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.o" "gcc" "examples/CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.o.d"
   )
 
 # Targets to which this target links.

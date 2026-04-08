@@ -1,6 +1,6 @@
 examples/CMakeFiles/get_rgb_demo.dir/get_rgb_demo.cpp.o: \
- /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/get_rgb_demo.cpp \
- /usr/include/stdc-predef.h /usr/include/signal.h /usr/include/features.h \
+ /home/mnsgc/PASTA/examples/get_rgb_demo.cpp /usr/include/stdc-predef.h \
+ /usr/include/signal.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/arm-linux-gnueabihf/bits/wordsize.h \
  /usr/include/arm-linux-gnueabihf/bits/timesize.h \

@@ -1,7 +1,6 @@
 examples/CMakeFiles/get_raw_frame.dir/get_raw_frame.cpp.o: \
- /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/get_raw_frame.cpp \
- /usr/include/stdc-predef.h /usr/local/include/libpixy2/libpixyusb2.h \
- /usr/include/stdio.h \
+ /home/mnsgc/PASTA/examples/get_raw_frame.cpp /usr/include/stdc-predef.h \
+ /usr/local/include/libpixy2/libpixyusb2.h /usr/include/stdio.h \
  /usr/include/arm-linux-gnueabihf/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/arm-linux-gnueabihf/bits/wordsize.h \

@@ -1,6 +1,6 @@
 examples/CMakeFiles/new_test_servo.dir/new_test_servo.cpp.o: \
- /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/new_test_servo.cpp \
- /usr/include/stdc-predef.h /usr/local/include/lgpio.h \
+ /home/mnsgc/PASTA/examples/new_test_servo.cpp /usr/include/stdc-predef.h \
+ /usr/include/lgpio.h \
  /usr/lib/gcc/arm-linux-gnueabihf/12/include/stdint.h \
  /usr/include/stdint.h \
  /usr/include/arm-linux-gnueabihf/bits/libc-header-start.h \

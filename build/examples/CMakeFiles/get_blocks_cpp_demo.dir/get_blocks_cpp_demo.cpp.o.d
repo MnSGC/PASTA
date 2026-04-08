@@ -1,5 +1,5 @@
 examples/CMakeFiles/get_blocks_cpp_demo.dir/get_blocks_cpp_demo.cpp.o: \
- /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/get_blocks_cpp_demo.cpp \
+ /home/mnsgc/PASTA/examples/get_blocks_cpp_demo.cpp \
  /usr/include/stdc-predef.h /usr/include/signal.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/arm-linux-gnueabihf/bits/wordsize.h \

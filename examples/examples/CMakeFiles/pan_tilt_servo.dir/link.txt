@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o -o pan_tilt_servo  -Wl,-rpath,/usr/local/lib /usr/local/lib/libpixy2/libpixy2.a /usr/lib/arm-linux-gnueabihf/libusb-1.0.so /usr/local/lib/liblgpio.so 

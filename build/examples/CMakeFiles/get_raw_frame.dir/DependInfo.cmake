@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/get_raw_frame.cpp" "examples/CMakeFiles/get_raw_frame.dir/get_raw_frame.cpp.o" "gcc" "examples/CMakeFiles/get_raw_frame.dir/get_raw_frame.cpp.o.d"
+  "/home/mnsgc/PASTA/examples/get_raw_frame.cpp" "examples/CMakeFiles/get_raw_frame.dir/get_raw_frame.cpp.o" "gcc" "examples/CMakeFiles/get_raw_frame.dir/get_raw_frame.cpp.o.d"
   )
 
 # Targets to which this target links.

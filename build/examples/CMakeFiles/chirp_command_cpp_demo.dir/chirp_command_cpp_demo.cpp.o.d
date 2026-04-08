@@ -1,5 +1,5 @@
 examples/CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.o: \
- /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/chirp_command_cpp_demo.cpp \
+ /home/mnsgc/PASTA/examples/chirp_command_cpp_demo.cpp \
  /usr/include/stdc-predef.h /usr/local/include/libpixy2/libpixyusb2.h \
  /usr/include/stdio.h \
  /usr/include/arm-linux-gnueabihf/bits/libc-header-start.h \

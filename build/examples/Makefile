@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mnsgc/pixy2_for_pi_using_steppermotor
+CMAKE_SOURCE_DIR = /home/mnsgc/PASTA
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mnsgc/pixy2_for_pi_using_steppermotor/build
+CMAKE_BINARY_DIR = /home/mnsgc/PASTA/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/mnsgc/pixy2_for_pi_using_steppermotor/build/CMakeFiles /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples//CMakeFiles/progress.marks
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mnsgc/pixy2_for_pi_using_steppermotor/build/CMakeFiles 0
+	cd /home/mnsgc/PASTA/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/mnsgc/PASTA/build/CMakeFiles /home/mnsgc/PASTA/build/examples//CMakeFiles/progress.marks
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mnsgc/PASTA/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/clean
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/preinstall
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/preinstall
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/mnsgc/PASTA/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 examples/CMakeFiles/chirp_command_cpp_demo.dir/rule:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/chirp_command_cpp_demo.dir/rule
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/chirp_command_cpp_demo.dir/rule
 .PHONY : examples/CMakeFiles/chirp_command_cpp_demo.dir/rule
 
 # Convenience name for target.
@@ -127,12 +127,12 @@ chirp_command_cpp_demo: examples/CMakeFiles/chirp_command_cpp_demo.dir/rule
 
 # fast build rule for target.
 chirp_command_cpp_demo/fast:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/chirp_command_cpp_demo.dir/build.make examples/CMakeFiles/chirp_command_cpp_demo.dir/build
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/chirp_command_cpp_demo.dir/build.make examples/CMakeFiles/chirp_command_cpp_demo.dir/build
 .PHONY : chirp_command_cpp_demo/fast
 
 # Convenience name for target.
 examples/CMakeFiles/get_blocks_cpp_demo.dir/rule:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/get_blocks_cpp_demo.dir/rule
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/get_blocks_cpp_demo.dir/rule
 .PHONY : examples/CMakeFiles/get_blocks_cpp_demo.dir/rule
 
 # Convenience name for target.
@@ -141,12 +141,12 @@ get_blocks_cpp_demo: examples/CMakeFiles/get_blocks_cpp_demo.dir/rule
 
 # fast build rule for target.
 get_blocks_cpp_demo/fast:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_blocks_cpp_demo.dir/build.make examples/CMakeFiles/get_blocks_cpp_demo.dir/build
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_blocks_cpp_demo.dir/build.make examples/CMakeFiles/get_blocks_cpp_demo.dir/build
 .PHONY : get_blocks_cpp_demo/fast
 
 # Convenience name for target.
 examples/CMakeFiles/get_lines_cpp_demo.dir/rule:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/get_lines_cpp_demo.dir/rule
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/get_lines_cpp_demo.dir/rule
 .PHONY : examples/CMakeFiles/get_lines_cpp_demo.dir/rule
 
 # Convenience name for target.
@@ -155,12 +155,12 @@ get_lines_cpp_demo: examples/CMakeFiles/get_lines_cpp_demo.dir/rule
 
 # fast build rule for target.
 get_lines_cpp_demo/fast:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_lines_cpp_demo.dir/build.make examples/CMakeFiles/get_lines_cpp_demo.dir/build
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_lines_cpp_demo.dir/build.make examples/CMakeFiles/get_lines_cpp_demo.dir/build
 .PHONY : get_lines_cpp_demo/fast
 
 # Convenience name for target.
 examples/CMakeFiles/get_raw_frame.dir/rule:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/get_raw_frame.dir/rule
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/get_raw_frame.dir/rule
 .PHONY : examples/CMakeFiles/get_raw_frame.dir/rule
 
 # Convenience name for target.
@@ -169,12 +169,12 @@ get_raw_frame: examples/CMakeFiles/get_raw_frame.dir/rule
 
 # fast build rule for target.
 get_raw_frame/fast:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_raw_frame.dir/build.make examples/CMakeFiles/get_raw_frame.dir/build
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_raw_frame.dir/build.make examples/CMakeFiles/get_raw_frame.dir/build
 .PHONY : get_raw_frame/fast
 
 # Convenience name for target.
 examples/CMakeFiles/get_rgb_demo.dir/rule:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/get_rgb_demo.dir/rule
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/get_rgb_demo.dir/rule
 .PHONY : examples/CMakeFiles/get_rgb_demo.dir/rule
 
 # Convenience name for target.
@@ -183,12 +183,12 @@ get_rgb_demo: examples/CMakeFiles/get_rgb_demo.dir/rule
 
 # fast build rule for target.
 get_rgb_demo/fast:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_rgb_demo.dir/build.make examples/CMakeFiles/get_rgb_demo.dir/build
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_rgb_demo.dir/build.make examples/CMakeFiles/get_rgb_demo.dir/build
 .PHONY : get_rgb_demo/fast
 
 # Convenience name for target.
 examples/CMakeFiles/pan_tilt_demo.dir/rule:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/pan_tilt_demo.dir/rule
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/pan_tilt_demo.dir/rule
 .PHONY : examples/CMakeFiles/pan_tilt_demo.dir/rule
 
 # Convenience name for target.
@@ -197,12 +197,12 @@ pan_tilt_demo: examples/CMakeFiles/pan_tilt_demo.dir/rule
 
 # fast build rule for target.
 pan_tilt_demo/fast:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/build
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/build
 .PHONY : pan_tilt_demo/fast
 
 # Convenience name for target.
 examples/CMakeFiles/pan_tilt_servo.dir/rule:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/pan_tilt_servo.dir/rule
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/pan_tilt_servo.dir/rule
 .PHONY : examples/CMakeFiles/pan_tilt_servo.dir/rule
 
 # Convenience name for target.
@@ -211,12 +211,12 @@ pan_tilt_servo: examples/CMakeFiles/pan_tilt_servo.dir/rule
 
 # fast build rule for target.
 pan_tilt_servo/fast:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/build
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/build
 .PHONY : pan_tilt_servo/fast
 
 # Convenience name for target.
 examples/CMakeFiles/new_test_servo.dir/rule:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/new_test_servo.dir/rule
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 examples/CMakeFiles/new_test_servo.dir/rule
 .PHONY : examples/CMakeFiles/new_test_servo.dir/rule
 
 # Convenience name for target.
@@ -225,7 +225,7 @@ new_test_servo: examples/CMakeFiles/new_test_servo.dir/rule
 
 # fast build rule for target.
 new_test_servo/fast:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/build
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/build
 .PHONY : new_test_servo/fast
 
 chirp_command_cpp_demo.o: chirp_command_cpp_demo.cpp.o
@@ -233,7 +233,7 @@ chirp_command_cpp_demo.o: chirp_command_cpp_demo.cpp.o
 
 # target to build an object file
 chirp_command_cpp_demo.cpp.o:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/chirp_command_cpp_demo.dir/build.make examples/CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.o
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/chirp_command_cpp_demo.dir/build.make examples/CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.o
 .PHONY : chirp_command_cpp_demo.cpp.o
 
 chirp_command_cpp_demo.i: chirp_command_cpp_demo.cpp.i
@@ -241,7 +241,7 @@ chirp_command_cpp_demo.i: chirp_command_cpp_demo.cpp.i
 
 # target to preprocess a source file
 chirp_command_cpp_demo.cpp.i:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/chirp_command_cpp_demo.dir/build.make examples/CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.i
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/chirp_command_cpp_demo.dir/build.make examples/CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.i
 .PHONY : chirp_command_cpp_demo.cpp.i
 
 chirp_command_cpp_demo.s: chirp_command_cpp_demo.cpp.s
@@ -249,7 +249,7 @@ chirp_command_cpp_demo.s: chirp_command_cpp_demo.cpp.s
 
 # target to generate assembly for a file
 chirp_command_cpp_demo.cpp.s:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/chirp_command_cpp_demo.dir/build.make examples/CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.s
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/chirp_command_cpp_demo.dir/build.make examples/CMakeFiles/chirp_command_cpp_demo.dir/chirp_command_cpp_demo.cpp.s
 .PHONY : chirp_command_cpp_demo.cpp.s
 
 get_blocks_cpp_demo.o: get_blocks_cpp_demo.cpp.o
@@ -257,7 +257,7 @@ get_blocks_cpp_demo.o: get_blocks_cpp_demo.cpp.o
 
 # target to build an object file
 get_blocks_cpp_demo.cpp.o:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_blocks_cpp_demo.dir/build.make examples/CMakeFiles/get_blocks_cpp_demo.dir/get_blocks_cpp_demo.cpp.o
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_blocks_cpp_demo.dir/build.make examples/CMakeFiles/get_blocks_cpp_demo.dir/get_blocks_cpp_demo.cpp.o
 .PHONY : get_blocks_cpp_demo.cpp.o
 
 get_blocks_cpp_demo.i: get_blocks_cpp_demo.cpp.i
@@ -265,7 +265,7 @@ get_blocks_cpp_demo.i: get_blocks_cpp_demo.cpp.i
 
 # target to preprocess a source file
 get_blocks_cpp_demo.cpp.i:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_blocks_cpp_demo.dir/build.make examples/CMakeFiles/get_blocks_cpp_demo.dir/get_blocks_cpp_demo.cpp.i
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_blocks_cpp_demo.dir/build.make examples/CMakeFiles/get_blocks_cpp_demo.dir/get_blocks_cpp_demo.cpp.i
 .PHONY : get_blocks_cpp_demo.cpp.i
 
 get_blocks_cpp_demo.s: get_blocks_cpp_demo.cpp.s
@@ -273,7 +273,7 @@ get_blocks_cpp_demo.s: get_blocks_cpp_demo.cpp.s
 
 # target to generate assembly for a file
 get_blocks_cpp_demo.cpp.s:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_blocks_cpp_demo.dir/build.make examples/CMakeFiles/get_blocks_cpp_demo.dir/get_blocks_cpp_demo.cpp.s
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_blocks_cpp_demo.dir/build.make examples/CMakeFiles/get_blocks_cpp_demo.dir/get_blocks_cpp_demo.cpp.s
 .PHONY : get_blocks_cpp_demo.cpp.s
 
 get_lines_cpp_demo.o: get_lines_cpp_demo.cpp.o
@@ -281,7 +281,7 @@ get_lines_cpp_demo.o: get_lines_cpp_demo.cpp.o
 
 # target to build an object file
 get_lines_cpp_demo.cpp.o:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_lines_cpp_demo.dir/build.make examples/CMakeFiles/get_lines_cpp_demo.dir/get_lines_cpp_demo.cpp.o
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_lines_cpp_demo.dir/build.make examples/CMakeFiles/get_lines_cpp_demo.dir/get_lines_cpp_demo.cpp.o
 .PHONY : get_lines_cpp_demo.cpp.o
 
 get_lines_cpp_demo.i: get_lines_cpp_demo.cpp.i
@@ -289,7 +289,7 @@ get_lines_cpp_demo.i: get_lines_cpp_demo.cpp.i
 
 # target to preprocess a source file
 get_lines_cpp_demo.cpp.i:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_lines_cpp_demo.dir/build.make examples/CMakeFiles/get_lines_cpp_demo.dir/get_lines_cpp_demo.cpp.i
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_lines_cpp_demo.dir/build.make examples/CMakeFiles/get_lines_cpp_demo.dir/get_lines_cpp_demo.cpp.i
 .PHONY : get_lines_cpp_demo.cpp.i
 
 get_lines_cpp_demo.s: get_lines_cpp_demo.cpp.s
@@ -297,7 +297,7 @@ get_lines_cpp_demo.s: get_lines_cpp_demo.cpp.s
 
 # target to generate assembly for a file
 get_lines_cpp_demo.cpp.s:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_lines_cpp_demo.dir/build.make examples/CMakeFiles/get_lines_cpp_demo.dir/get_lines_cpp_demo.cpp.s
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_lines_cpp_demo.dir/build.make examples/CMakeFiles/get_lines_cpp_demo.dir/get_lines_cpp_demo.cpp.s
 .PHONY : get_lines_cpp_demo.cpp.s
 
 get_raw_frame.o: get_raw_frame.cpp.o
@@ -305,7 +305,7 @@ get_raw_frame.o: get_raw_frame.cpp.o
 
 # target to build an object file
 get_raw_frame.cpp.o:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_raw_frame.dir/build.make examples/CMakeFiles/get_raw_frame.dir/get_raw_frame.cpp.o
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_raw_frame.dir/build.make examples/CMakeFiles/get_raw_frame.dir/get_raw_frame.cpp.o
 .PHONY : get_raw_frame.cpp.o
 
 get_raw_frame.i: get_raw_frame.cpp.i
@@ -313,7 +313,7 @@ get_raw_frame.i: get_raw_frame.cpp.i
 
 # target to preprocess a source file
 get_raw_frame.cpp.i:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_raw_frame.dir/build.make examples/CMakeFiles/get_raw_frame.dir/get_raw_frame.cpp.i
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_raw_frame.dir/build.make examples/CMakeFiles/get_raw_frame.dir/get_raw_frame.cpp.i
 .PHONY : get_raw_frame.cpp.i
 
 get_raw_frame.s: get_raw_frame.cpp.s
@@ -321,7 +321,7 @@ get_raw_frame.s: get_raw_frame.cpp.s
 
 # target to generate assembly for a file
 get_raw_frame.cpp.s:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_raw_frame.dir/build.make examples/CMakeFiles/get_raw_frame.dir/get_raw_frame.cpp.s
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_raw_frame.dir/build.make examples/CMakeFiles/get_raw_frame.dir/get_raw_frame.cpp.s
 .PHONY : get_raw_frame.cpp.s
 
 get_rgb_demo.o: get_rgb_demo.cpp.o
@@ -329,7 +329,7 @@ get_rgb_demo.o: get_rgb_demo.cpp.o
 
 # target to build an object file
 get_rgb_demo.cpp.o:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_rgb_demo.dir/build.make examples/CMakeFiles/get_rgb_demo.dir/get_rgb_demo.cpp.o
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_rgb_demo.dir/build.make examples/CMakeFiles/get_rgb_demo.dir/get_rgb_demo.cpp.o
 .PHONY : get_rgb_demo.cpp.o
 
 get_rgb_demo.i: get_rgb_demo.cpp.i
@@ -337,7 +337,7 @@ get_rgb_demo.i: get_rgb_demo.cpp.i
 
 # target to preprocess a source file
 get_rgb_demo.cpp.i:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_rgb_demo.dir/build.make examples/CMakeFiles/get_rgb_demo.dir/get_rgb_demo.cpp.i
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_rgb_demo.dir/build.make examples/CMakeFiles/get_rgb_demo.dir/get_rgb_demo.cpp.i
 .PHONY : get_rgb_demo.cpp.i
 
 get_rgb_demo.s: get_rgb_demo.cpp.s
@@ -345,7 +345,7 @@ get_rgb_demo.s: get_rgb_demo.cpp.s
 
 # target to generate assembly for a file
 get_rgb_demo.cpp.s:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_rgb_demo.dir/build.make examples/CMakeFiles/get_rgb_demo.dir/get_rgb_demo.cpp.s
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/get_rgb_demo.dir/build.make examples/CMakeFiles/get_rgb_demo.dir/get_rgb_demo.cpp.s
 .PHONY : get_rgb_demo.cpp.s
 
 new_test_servo.o: new_test_servo.cpp.o
@@ -353,7 +353,7 @@ new_test_servo.o: new_test_servo.cpp.o
 
 # target to build an object file
 new_test_servo.cpp.o:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/new_test_servo.cpp.o
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/new_test_servo.cpp.o
 .PHONY : new_test_servo.cpp.o
 
 new_test_servo.i: new_test_servo.cpp.i
@@ -361,7 +361,7 @@ new_test_servo.i: new_test_servo.cpp.i
 
 # target to preprocess a source file
 new_test_servo.cpp.i:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/new_test_servo.cpp.i
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/new_test_servo.cpp.i
 .PHONY : new_test_servo.cpp.i
 
 new_test_servo.s: new_test_servo.cpp.s
@@ -369,7 +369,7 @@ new_test_servo.s: new_test_servo.cpp.s
 
 # target to generate assembly for a file
 new_test_servo.cpp.s:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/new_test_servo.cpp.s
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/new_test_servo.dir/build.make examples/CMakeFiles/new_test_servo.dir/new_test_servo.cpp.s
 .PHONY : new_test_servo.cpp.s
 
 pan_tilt_demo.o: pan_tilt_demo.cpp.o
@@ -377,7 +377,7 @@ pan_tilt_demo.o: pan_tilt_demo.cpp.o
 
 # target to build an object file
 pan_tilt_demo.cpp.o:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.o
 .PHONY : pan_tilt_demo.cpp.o
 
 pan_tilt_demo.i: pan_tilt_demo.cpp.i
@@ -385,7 +385,7 @@ pan_tilt_demo.i: pan_tilt_demo.cpp.i
 
 # target to preprocess a source file
 pan_tilt_demo.cpp.i:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.i
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.i
 .PHONY : pan_tilt_demo.cpp.i
 
 pan_tilt_demo.s: pan_tilt_demo.cpp.s
@@ -393,7 +393,7 @@ pan_tilt_demo.s: pan_tilt_demo.cpp.s
 
 # target to generate assembly for a file
 pan_tilt_demo.cpp.s:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.s
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_demo.dir/build.make examples/CMakeFiles/pan_tilt_demo.dir/pan_tilt_demo.cpp.s
 .PHONY : pan_tilt_demo.cpp.s
 
 pan_tilt_servo.o: pan_tilt_servo.cpp.o
@@ -401,7 +401,7 @@ pan_tilt_servo.o: pan_tilt_servo.cpp.o
 
 # target to build an object file
 pan_tilt_servo.cpp.o:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o
 .PHONY : pan_tilt_servo.cpp.o
 
 pan_tilt_servo.i: pan_tilt_servo.cpp.i
@@ -409,7 +409,7 @@ pan_tilt_servo.i: pan_tilt_servo.cpp.i
 
 # target to preprocess a source file
 pan_tilt_servo.cpp.i:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.i
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.i
 .PHONY : pan_tilt_servo.cpp.i
 
 pan_tilt_servo.s: pan_tilt_servo.cpp.s
@@ -417,7 +417,7 @@ pan_tilt_servo.s: pan_tilt_servo.cpp.s
 
 # target to generate assembly for a file
 pan_tilt_servo.cpp.s:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.s
+	cd /home/mnsgc/PASTA/build && $(MAKE) $(MAKESILENT) -f examples/CMakeFiles/pan_tilt_servo.dir/build.make examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.s
 .PHONY : pan_tilt_servo.cpp.s
 
 # Help Target
@@ -471,6 +471,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/mnsgc/PASTA/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

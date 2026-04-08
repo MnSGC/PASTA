@@ -1,4 +1,4 @@
-# Install script for directory: /home/mnsgc/pixy2_for_pi_using_steppermotor/examples
+# Install script for directory: /home/mnsgc/PASTA/examples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

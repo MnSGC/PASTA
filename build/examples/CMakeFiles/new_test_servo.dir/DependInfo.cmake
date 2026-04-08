@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/mnsgc/pixy2_for_pi_using_steppermotor/examples/new_test_servo.cpp" "examples/CMakeFiles/new_test_servo.dir/new_test_servo.cpp.o" "gcc" "examples/CMakeFiles/new_test_servo.dir/new_test_servo.cpp.o.d"
+  "/home/mnsgc/PASTA/examples/new_test_servo.cpp" "examples/CMakeFiles/new_test_servo.dir/new_test_servo.cpp.o" "gcc" "examples/CMakeFiles/new_test_servo.dir/new_test_servo.cpp.o.d"
   )
 
 # Targets to which this target links.

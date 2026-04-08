@@ -1,4 +1,4 @@
-# Install script for directory: /home/mnsgc/pixy2_for_pi_using_steppermotor
+# Install script for directory: /home/mnsgc/PASTA
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples/cmake_install.cmake")
+  include("/home/mnsgc/PASTA/build/examples/cmake_install.cmake")
 
 endif()
 
@@ -56,5 +56,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/mnsgc/pixy2_for_pi_using_steppermotor/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/mnsgc/PASTA/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

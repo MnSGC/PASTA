@@ -318,7 +318,7 @@ int main()
   int32_t panOffset, tiltOffset;
   Block *block=NULL;
   int8_t is_pan, is_tilt;
-  int handle = lgGpiochipOpen(4);
+  int handle = lgGpiochipOpen(0);
   setup(handle);
   pthread_mutex_init(&mutex, NULL);
   pthread_mutex_init(&block_mutex, NULL);

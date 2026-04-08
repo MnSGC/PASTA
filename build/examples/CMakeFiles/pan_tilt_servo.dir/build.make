@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mnsgc/pixy2_for_pi_using_steppermotor
+CMAKE_SOURCE_DIR = /home/mnsgc/PASTA
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mnsgc/pixy2_for_pi_using_steppermotor/build
+CMAKE_BINARY_DIR = /home/mnsgc/PASTA/build
 
 # Include any dependencies generated for this target.
 include examples/CMakeFiles/pan_tilt_servo.dir/depend.make
@@ -70,18 +70,18 @@ include examples/CMakeFiles/pan_tilt_servo.dir/progress.make
 include examples/CMakeFiles/pan_tilt_servo.dir/flags.make
 
 examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: examples/CMakeFiles/pan_tilt_servo.dir/flags.make
-examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/pan_tilt_servo.cpp
+examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: /home/mnsgc/PASTA/examples/pan_tilt_servo.cpp
 examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: examples/CMakeFiles/pan_tilt_servo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mnsgc/pixy2_for_pi_using_steppermotor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o"
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o -MF CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o.d -o CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o -c /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/pan_tilt_servo.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mnsgc/PASTA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o"
+	cd /home/mnsgc/PASTA/build/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o -MF CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o.d -o CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o -c /home/mnsgc/PASTA/examples/pan_tilt_servo.cpp
 
 examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.i"
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/pan_tilt_servo.cpp > CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.i
+	cd /home/mnsgc/PASTA/build/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mnsgc/PASTA/examples/pan_tilt_servo.cpp > CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.i
 
 examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.s"
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mnsgc/pixy2_for_pi_using_steppermotor/examples/pan_tilt_servo.cpp -o CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.s
+	cd /home/mnsgc/PASTA/build/examples && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mnsgc/PASTA/examples/pan_tilt_servo.cpp -o CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.s
 
 # Object files for target pan_tilt_servo
 pan_tilt_servo_OBJECTS = \
@@ -94,20 +94,20 @@ examples/pan_tilt_servo: examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.c
 examples/pan_tilt_servo: examples/CMakeFiles/pan_tilt_servo.dir/build.make
 examples/pan_tilt_servo: /usr/local/lib/libpixy2/libpixy2.a
 examples/pan_tilt_servo: /usr/lib/arm-linux-gnueabihf/libusb-1.0.so
-examples/pan_tilt_servo: /usr/local/lib/liblgpio.so
+examples/pan_tilt_servo: /usr/lib/arm-linux-gnueabihf/liblgpio.so
 examples/pan_tilt_servo: examples/CMakeFiles/pan_tilt_servo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mnsgc/pixy2_for_pi_using_steppermotor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable pan_tilt_servo"
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pan_tilt_servo.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mnsgc/PASTA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable pan_tilt_servo"
+	cd /home/mnsgc/PASTA/build/examples && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pan_tilt_servo.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 examples/CMakeFiles/pan_tilt_servo.dir/build: examples/pan_tilt_servo
 .PHONY : examples/CMakeFiles/pan_tilt_servo.dir/build
 
 examples/CMakeFiles/pan_tilt_servo.dir/clean:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples && $(CMAKE_COMMAND) -P CMakeFiles/pan_tilt_servo.dir/cmake_clean.cmake
+	cd /home/mnsgc/PASTA/build/examples && $(CMAKE_COMMAND) -P CMakeFiles/pan_tilt_servo.dir/cmake_clean.cmake
 .PHONY : examples/CMakeFiles/pan_tilt_servo.dir/clean
 
 examples/CMakeFiles/pan_tilt_servo.dir/depend:
-	cd /home/mnsgc/pixy2_for_pi_using_steppermotor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mnsgc/pixy2_for_pi_using_steppermotor /home/mnsgc/pixy2_for_pi_using_steppermotor/examples /home/mnsgc/pixy2_for_pi_using_steppermotor/build /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples /home/mnsgc/pixy2_for_pi_using_steppermotor/build/examples/CMakeFiles/pan_tilt_servo.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/mnsgc/PASTA/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mnsgc/PASTA /home/mnsgc/PASTA/examples /home/mnsgc/PASTA/build /home/mnsgc/PASTA/build/examples /home/mnsgc/PASTA/build/examples/CMakeFiles/pan_tilt_servo.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : examples/CMakeFiles/pan_tilt_servo.dir/depend
 
