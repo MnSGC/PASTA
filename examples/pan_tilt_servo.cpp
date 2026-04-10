@@ -74,7 +74,7 @@ struct Thread_block{
 
 auto start = std::chrono::high_resolution_clock::now();
 double duration = 0;
-double run_time = 30;
+double run_time = 5;
 time_t timestamp;
 pthread_mutex_t mutex;
 pthread_mutex_t block_mutex;
@@ -173,7 +173,7 @@ void setup (int handle){
     int levels[4] = {0, 0, 1, 1};
     lgGroupClaimOutput(handle, 0, 4, pins, levels);
     lgGpioWrite(handle, PWMA, 1);
-    lgTxPwm(handle, PWMA, 500, 50, 0, 0);
+    lgTxPwm(handle, PWMA, 1000, 50, 0, 0);
     if (lgGpioClaimOutput(handle, 0, SERVO_GPIO, 0) != 0) { //claims pin 13
         std::cerr << "Failed to claim SERVO_GPIO " << SERVO_GPIO << std::endl;
     }
@@ -261,6 +261,53 @@ void * actuate (void *args){
   }
   return NULL;
 }
+
+
+  void* write_to_csv (void * args) {
+    // char buf[64];
+    fout.open("pixyData.csv", std::ios::out | std::ios::trunc);
+    fout << "H:M:S,signature,x location,y location,width,height \n";
+    std::cout << "create csv file" << std::endl;
+    fout.close();
+    int index;
+    while(run_flag && duration < run_time){
+      fout.open("pixyData.csv", std::ios::out | std::ios::app);
+      timestamp = time(0);
+    
+      pthread_mutex_lock(&block_mutex);
+      Thread_block cur_block = *((Thread_block *) args);
+    
+      pthread_mutex_unlock(&block_mutex);
+      struct tm *loc_time = localtime(&timestamp);
+      // std::cout << loc_time->tm_hour << ": " << loc_time->tm_min << ": " << loc_time->tm_sec << std::endl;
+      // Were blocks detected? //
+      if (cur_block.is_tracking)
+      {
+          // pthread_mutex_lock(&block_mutex);
+          // Block block = pixy.ccc.blocks[0];
+          // pthread_mutex_unlock(&block_mutex);
+          // std::cout << "writiting" << cur_block.m_signature << std::endl;
+          fout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "," <<
+          cur_block.m_signature << "," << cur_block.m_x << "," 
+          << cur_block.m_y << "," << cur_block.m_width << "," << 
+          cur_block.m_height << "\n";
+          sleep(1);
+          // std::cout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "," << 0 << "," << 
+          // cur_block.m_signature << "," << cur_block.m_x << "," 
+          // << cur_block.m_y << "," << cur_block.m_width << "," << 
+          // cur_block.m_height << "\n";
+         // fout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "," << 0 << "," << "\n"; 
+      }
+      // else{
+        
+      fout.close();
+      //     fout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "\n ";
+      // }
+    }
+    return NULL;
+      
+  }
+  
 int16_t acquireBlock()
 {
   if (pixy.ccc.numBlocks && pixy.ccc.blocks[0].m_age>30)
@@ -400,16 +447,16 @@ int main() {
   
     //uncommented out the below on oct. 10th 2025
     // ==== Example motion sequence ====
-    // std::cout << "Spin servo forward while extending actuator\n";
-    // setServoSpeed(75);  // start servo forward
-    // lgGpioWrite(handle, AIN1, 1); // extend
-    // lguSleep(5);
+    std::cout << "Spin servo forward while extending actuator\n";
+    setServoSpeed(75);  // start servo forward
+    lgGpioWrite(handle, AIN1, 1); // extend
+    lguSleep(5);
 
-    // std::cout << "Spin servo backward while retracting actuator\n";
-    // setServoSpeed(-75); // reverse servo
-    // lgGpioWrite(handle, AIN1, 0);
-    // lgGpioWrite(handle, AIN2, 1); // retract
-    // lguSleep(5);
+    std::cout << "Spin servo backward while retracting actuator\n";
+    setServoSpeed(-75); // reverse servo
+    lgGpioWrite(handle, AIN1, 0);
+    lgGpioWrite(handle, AIN2, 1); // retract
+    lguSleep(5);
     
     
     // Stop servo
