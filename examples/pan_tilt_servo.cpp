@@ -74,7 +74,7 @@ struct Thread_block{
 
 auto start = std::chrono::high_resolution_clock::now();
 double duration = 0;
-double run_time = 5;
+double run_time = 30;
 time_t timestamp;
 pthread_mutex_t mutex;
 pthread_mutex_t block_mutex;
@@ -173,7 +173,7 @@ void setup (int handle){
     int levels[4] = {0, 0, 1, 1};
     lgGroupClaimOutput(handle, 0, 4, pins, levels);
     lgGpioWrite(handle, PWMA, 1);
-    lgTxPwm(handle, PWMA, 1000, 50, 0, 0);
+    lgTxPwm(handle, PWMA, 1000.f, 50.f, 0, 0); // this is for the linear actuator
     if (lgGpioClaimOutput(handle, 0, SERVO_GPIO, 0) != 0) { //claims pin 13
         std::cerr << "Failed to claim SERVO_GPIO " << SERVO_GPIO << std::endl;
     }
@@ -193,34 +193,42 @@ void setServoSpeed(int speed) {
     currentSpeed = speed; 
 }
 // Send one PWM pulse
-void sendServoPulse(int h, int highTime_us) { // hightime_us is hte pulsewidth
-    int lowTime_us = PWM_PERIOD_US - highTime_us;
-    int result = lgTxPulse(h, SERVO_GPIO, highTime_us, lowTime_us, 0, 1); 
+void sendServoPulse(int handle, int pulse_width_us) { // hightime_us is hte pulsewidth
+    // int lowTime_us = PWM_PERIOD_US - pulse_width_us;
+    float duty_cycle = (pulse_width_us/20000.f) * 100.f;
+    int result = lgTxPwm(handle, SERVO_GPIO, 50.f, duty_cycle, 0, 0);
+    // int result = lgTxPulse(handle, SERVO_GPIO, pulse_width_us, lowTime_us, 0, 1); 
     if (result < 0) {
-        std::cerr << "lgTxPulse failed: " << result << std::endl;
+        std::cerr << "lgTxPwm failed: " << result << std::endl;
     }
-    usleep(PWM_PERIOD_US);
 }
 
 // Servo thread: keeps running while servoRunning = true
 void* servoThreadFunc(void *args) {
-    pthread_mutex_lock(&mutex);
-    Thread_args arguments =*((Thread_args *) args);//creates copy of the threaded argument
-   	pthread_mutex_unlock(&mutex);
-   	
-    int handle = arguments.handle;
-    int8_t is_pan = arguments.is_pan;
-    int32_t pan_offset = arguments.pan_offset;
-    int32_t tilt_offset = arguments.tilt_offset;
+    float sensitivity = 0.5;
     while (run_flag && duration < run_time) {
+
+      pthread_mutex_lock(&mutex);
+      Thread_args arguments =*((Thread_args *) args);//creates copy of the threaded argument
+     	pthread_mutex_unlock(&mutex);
+   	
+      int handle = arguments.handle;
+      int8_t is_pan = arguments.is_pan;
+      int32_t pan_offset = arguments.pan_offset;
         
-        int speed = is_pan == 1 ? pan_offset : 0;
+      int speed = is_pan == 1 ? pan_offset * sensitivity : 0;
+      // std::cout << "is_pan " <<is_pan << std::endl;
+      if(is_pan){
+        std::cout << "entered here" << std::endl;
         setServoSpeed(speed);
-        // std::cout << "speed: " << speed << std::endl;
-        // std::cout <<"pan_ofset: " << pan_offset << std::endl;
-        // std::cout <<"tilt_offset: " << tilt_offset << std::endl;
         int pulseWidth = speedToPulseWidth(currentSpeed); //converts new speed using function, creates pulseWidth value
         sendServoPulse(handle, pulseWidth); 
+        
+      }else{
+        sendServoPulse(handle, STOP_PW); 
+      }
+
+      usleep(PWM_PERIOD_US);
     }
     return NULL;
 }
@@ -354,22 +362,31 @@ int main() {
     args.is_tilt = 0;
     args.tilt_offset = 0;  
     args.adc = NULL;
+  
+    thread_block.m_signature = 0;
+    thread_block.m_height = 0;
+    thread_block.m_width = 0;
+    thread_block.m_x = 0;
+    thread_block.m_y = 0;
+    thread_block.is_tracking = 0;
 
+    
     //setup handle_SIGINT as a signal handler
     signal(SIGINT, handle_SIGINT);
     
-    
+
     //setup the mutually exclusive variables
     pthread_mutex_init(&mutex, NULL);
     pthread_mutex_init(&block_mutex, NULL);
     setup(handle);
     
-    
     // Start threads
     pthread_t servo_thread;
     pthread_t actuator_thread;
+    pthread_t csv_thread;
     pthread_create(&servo_thread, NULL, servoThreadFunc, (void *) (&args));
     pthread_create(&actuator_thread, NULL, actuate, (void *) (&args));
+    pthread_create(&csv_thread, NULL, write_to_csv, (void *) &thread_block);
 
     //initialize the pixy camera
     pixy.init();
@@ -381,38 +398,34 @@ int main() {
 
         index=acquireBlock();
         if(index==-1){
-          if(is_tilt != 0){
+          // if(is_tilt != 0){
         
             pthread_mutex_lock(&mutex);
             args.is_tilt = 0;
+            args.is_pan = 0;
             pthread_mutex_unlock(&mutex);
-          }
+          // }
           continue;
-      
         }
+
         block = trackBlock(index);
 
         if(block){
-          // pthread_mutex_lock(&block_mutex);
-          // thread_block.m_height = block->m_height;
-          // thread_block.m_width = block->m_width;
-          // thread_block.m_signature = block->m_signature;
-          // thread_block.m_x = block->m_x;
-          // thread_block.m_y = block->m_y;
-          // thread_block.is_tracking = 1;
-          // pthread_mutex_unlock(&block_mutex);
-              // std::cout << 
-              // block->m_signature << "," << block->m_x << "," 
-              // << block->m_y << "," << block->m_width << "," << 
-              // block->m_height << "\n";
-          // printf("entered her");
+          pthread_mutex_lock(&block_mutex);
+          thread_block.m_height = block->m_height;
+          thread_block.m_width = block->m_width;
+          thread_block.m_signature = block->m_signature;
+          thread_block.m_x = block->m_x;
+          thread_block.m_y = block->m_y;
+          thread_block.is_tracking = 1;
+          pthread_mutex_unlock(&block_mutex);
+
           panOffset = (int32_t)pixy.frameWidth/2 - (int32_t)block->m_x;
           tiltOffset = (int32_t)block->m_y - (int32_t)pixy.frameHeight/2;  
-          std::cout << panOffset << std::endl;
           // v0 = MCP3008_read_singlauto e_ended(_tickadc, 0);
-          // printf("adc report: %d\n", v0);
           is_pan = 1;
           is_tilt = 1;
+          // std::cout << abs(panOffset) << std::endl;
           if(abs(panOffset) < 30){
             is_pan = 0;
           }
@@ -447,16 +460,16 @@ int main() {
   
     //uncommented out the below on oct. 10th 2025
     // ==== Example motion sequence ====
-    std::cout << "Spin servo forward while extending actuator\n";
-    setServoSpeed(75);  // start servo forward
-    lgGpioWrite(handle, AIN1, 1); // extend
-    lguSleep(5);
+    // std::cout << "Spin servo forward while extending actuator\n";
+    // setServoSpeed(75);  // start servo forward
+    // lgGpioWrite(handle, AIN1, 1); // extend
+    // lguSleep(5);
 
-    std::cout << "Spin servo backward while retracting actuator\n";
-    setServoSpeed(-75); // reverse servo
-    lgGpioWrite(handle, AIN1, 0);
-    lgGpioWrite(handle, AIN2, 1); // retract
-    lguSleep(5);
+    // std::cout << "Spin servo backward while retracting actuator\n";
+    // setServoSpeed(-75); // reverse servo
+    // lgGpioWrite(handle, AIN1, 0);
+    // lgGpioWrite(handle, AIN2, 1); // retract
+    // lguSleep(5);
     
     
     // Stop servo
@@ -466,12 +479,10 @@ int main() {
     servoRunning = false;
     pthread_join(servo_thread, NULL);
     pthread_join(actuator_thread, NULL);
+    pthread_join(csv_thread, NULL);
     pthread_mutex_destroy(&mutex);
     pthread_mutex_destroy(&block_mutex);
 
-    // lgGpioWrite(handle, AIN1, 0);
-    // lgGpioWrite(handle, AIN2, 0);
-    // lgGpioWrite(handle, SERVO_GPIO, 0);
     lgGpiochipClose(handle);
 
     return 0;
