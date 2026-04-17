@@ -217,9 +217,7 @@ void* servoThreadFunc(void *args) {
       int32_t pan_offset = arguments.pan_offset;
         
       int speed = is_pan == 1 ? pan_offset * sensitivity : 0;
-      // std::cout << "is_pan " <<is_pan << std::endl;
       if(is_pan){
-        std::cout << "entered here" << std::endl;
         setServoSpeed(speed);
         int pulseWidth = speedToPulseWidth(currentSpeed); //converts new speed using function, creates pulseWidth value
         sendServoPulse(handle, pulseWidth); 
@@ -251,7 +249,10 @@ void * actuate (void *args){
     int8_t is_tilt = arguments.is_tilt;
     int32_t tilt_offset = arguments.tilt_offset;
 
-    int8_t tilt_direction = abs(tilt_offset >> 31);
+    // this bitwise operation will result in 1 or 0
+    // to determine direction. If you want to invert the direction
+    // just remove ^ 1.
+    int8_t tilt_direction = abs(tilt_offset >> 31) ^ 1;
     // printf("v0 = %d\n", v0);
 
     //run the actuator as long as is_tilt is true.
@@ -287,30 +288,17 @@ void * actuate (void *args){
     
       pthread_mutex_unlock(&block_mutex);
       struct tm *loc_time = localtime(&timestamp);
-      // std::cout << loc_time->tm_hour << ": " << loc_time->tm_min << ": " << loc_time->tm_sec << std::endl;
       // Were blocks detected? //
       if (cur_block.is_tracking)
       {
-          // pthread_mutex_lock(&block_mutex);
-          // Block block = pixy.ccc.blocks[0];
-          // pthread_mutex_unlock(&block_mutex);
-          // std::cout << "writiting" << cur_block.m_signature << std::endl;
           fout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "," <<
           cur_block.m_signature << "," << cur_block.m_x << "," 
           << cur_block.m_y << "," << cur_block.m_width << "," << 
           cur_block.m_height << "\n";
           sleep(1);
-          // std::cout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "," << 0 << "," << 
-          // cur_block.m_signature << "," << cur_block.m_x << "," 
-          // << cur_block.m_y << "," << cur_block.m_width << "," << 
-          // cur_block.m_height << "\n";
-         // fout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "," << 0 << "," << "\n"; 
       }
-      // else{
         
       fout.close();
-      //     fout << loc_time->tm_hour << ":"<< loc_time->tm_min << ":" << loc_time->tm_sec << "\n ";
-      // }
     }
     return NULL;
       
@@ -379,6 +367,9 @@ int main() {
     pthread_mutex_init(&mutex, NULL);
     pthread_mutex_init(&block_mutex, NULL);
     setup(handle);
+
+    //initialize the pixy camera
+    pixy.init();
     
     // Start threads
     pthread_t servo_thread;
@@ -388,8 +379,6 @@ int main() {
     pthread_create(&actuator_thread, NULL, actuate, (void *) (&args));
     pthread_create(&csv_thread, NULL, write_to_csv, (void *) &thread_block);
 
-    //initialize the pixy camera
-    pixy.init();
     
     while(run_flag && duration < run_time){
       auto duration_tick = std::chrono::high_resolution_clock::now() - start;
@@ -425,7 +414,6 @@ int main() {
           // v0 = MCP3008_read_singlauto e_ended(_tickadc, 0);
           is_pan = 1;
           is_tilt = 1;
-          // std::cout << abs(panOffset) << std::endl;
           if(abs(panOffset) < 30){
             is_pan = 0;
           }
