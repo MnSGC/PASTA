@@ -72,13 +72,66 @@ struct Thread_block{
   uint8_t is_tracking;
 };
 
+
+class PIDController{
+  public:
+    float Kp, Ki, Kd;
+    float integral_limit;
+    float output_limit;
+
+    float integral = 0.0f;
+    float previous_error = 0.0f;
+
+    PIDController(float p, float i, float d, float i_limit, float out_limit) :
+    Kp(p), Ki(i), Kd(d), integral_limit(i_limit), output_limit(out_limit) {}
+
+
+    float update(float error, float dt){
+      if( dt <= 0.0f) return 0.0f;
+
+      float p_term = Kp * error;
+      integral += error + dt;
+      if(integral > integral_limit){
+        
+        integral = integral_limit;
+      }
+      else if (integral < -integral_limit){
+        integral = -integral_limit;
+      }
+
+      float i_term = Ki * integral;
+      float derivative = (error - previous_error) / dt;
+      float d_term = Kd * derivative;
+
+      previous_error = error;
+      float output = p_term + i_term + d_term;
+
+      if(output > output_limit) {
+        output = output_limit;
+      }
+      else if(output < -output_limit ){
+        output = -output_limit;
+      }
+
+      return output;
+    }
+
+
+    void reset(){
+      integral = 0.0f;
+      previous_error = 0.0f;
+    }
+};
+
+
 auto start = std::chrono::high_resolution_clock::now();
 double duration = 0;
-double run_time = 30;
+double run_time = 25200;
 time_t timestamp;
 pthread_mutex_t mutex;
 pthread_mutex_t block_mutex;
 Pixy2 pixy;
+PIDController reactionPID(0.5f, 0.0f, 0.1f, 50.0f, 100.0f);
 // PIDLoop panLoop(400, 0, 400, true);
 // PIDLoop tiltLoop(500, 0, 500, true);
 static bool  run_flag = true;
@@ -206,6 +259,9 @@ void sendServoPulse(int handle, int pulse_width_us) { // hightime_us is hte puls
 // Servo thread: keeps running while servoRunning = true
 void* servoThreadFunc(void *args) {
     float sensitivity = 0.5;
+    auto last_time = std::chrono::high_resolution_clock::now();
+    bool tracking_previously = false;
+    
     while (run_flag && duration < run_time) {
 
       pthread_mutex_lock(&mutex);
@@ -215,15 +271,28 @@ void* servoThreadFunc(void *args) {
       int handle = arguments.handle;
       int8_t is_pan = arguments.is_pan;
       int32_t pan_offset = arguments.pan_offset;
+
+      auto current_time = std::chrono::high_resolution_clock::now();
+      std::chrono::duration<float> elapsed = current_time - last_time;
+      float dt = elapsed.count();
+      last_time = current_time;
         
-      int speed = is_pan == 1 ? pan_offset * sensitivity : 0;
+      // int speed = is_pan == 1 ? pan_offset * sensitivity : 0;
       if(is_pan){
-        setServoSpeed(speed);
-        int pulseWidth = speedToPulseWidth(currentSpeed); //converts new speed using function, creates pulseWidth value
+
+        if(!tracking_previously){
+          reactionPID.reset();
+          tracking_previously = true;
+        }
+        float speedCommand = reactionPID.update(pan_offset, dt);
+        // setServoSpeed(speed);
+        // int pulseWidth = speedToPulseWidth(currentSpeed); //converts new speed using function, creates pulseWidth value
+        int pulseWidth = speedToPulseWidth((int) speedCommand); //converts new speed using function, creates pulseWidth value
         sendServoPulse(handle, pulseWidth); 
         
       }else{
         sendServoPulse(handle, STOP_PW); 
+        tracking_previously = false;
       }
 
       usleep(PWM_PERIOD_US);
