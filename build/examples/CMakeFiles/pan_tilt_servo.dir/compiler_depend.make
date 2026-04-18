@@ -280,8 +280,31 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: /home/mnsgc/PASTA/e
   /usr/include/c++/12/bits/this_thread_sleep.h \
   /usr/include/arm-linux-gnueabihf/sys/wait.h \
   /usr/include/arm-linux-gnueabihf/bits/types/idtype_t.h \
-  /usr/include/c++/12/chrono
+  /usr/include/c++/12/chrono \
+  /usr/include/c++/12/sstream \
+  /usr/include/c++/12/bits/sstream.tcc \
+  /usr/include/c++/12/iomanip \
+  /usr/include/c++/12/locale \
+  /usr/include/c++/12/bits/locale_facets_nonio.h \
+  /usr/include/arm-linux-gnueabihf/c++/12/bits/time_members.h \
+  /usr/include/arm-linux-gnueabihf/c++/12/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/12/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/12/bits/locale_conv.h \
+  /usr/include/c++/12/bits/quoted_string.h
 
+
+/usr/include/c++/12/bits/locale_facets_nonio.tcc:
+
+/usr/include/libintl.h:
+
+/usr/include/c++/12/bits/locale_facets_nonio.h:
+
+/usr/include/c++/12/locale:
+
+/usr/include/c++/12/bits/sstream.tcc:
+
+/usr/include/c++/12/sstream:
 
 /usr/include/c++/12/bits/uses_allocator.h:
 
@@ -345,6 +368,8 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: /home/mnsgc/PASTA/e
 
 /usr/include/arm-linux-gnueabihf/bits/ss_flags.h:
 
+/usr/include/arm-linux-gnueabihf/c++/12/bits/messages_members.h:
+
 /usr/include/arm-linux-gnueabihf/bits/setjmp.h:
 
 /usr/include/arm-linux-gnueabihf/bits/getopt_core.h:
@@ -405,9 +430,13 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: /home/mnsgc/PASTA/e
 
 /usr/include/arm-linux-gnueabihf/bits/struct_mutex.h:
 
+/usr/include/c++/12/bits/quoted_string.h:
+
 /usr/include/arm-linux-gnueabihf/bits/types/__FILE.h:
 
 /usr/include/c++/12/bits/ptr_traits.h:
+
+/usr/include/arm-linux-gnueabihf/c++/12/bits/time_members.h:
 
 /usr/include/linux/gpio.h:
 
@@ -416,6 +445,8 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: /home/mnsgc/PASTA/e
 /usr/include/arm-linux-gnueabihf/bits/time64.h:
 
 /usr/include/arm-linux-gnueabihf/gnu/stubs-hard.h:
+
+/usr/include/c++/12/iomanip:
 
 /usr/include/arm-linux-gnueabihf/sys/wait.h:
 
@@ -596,6 +627,8 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o: /home/mnsgc/PASTA/e
 /usr/include/arm-linux-gnueabihf/bits/types/__mbstate_t.h:
 
 /usr/include/arm-linux-gnueabihf/bits/waitflags.h:
+
+/usr/include/c++/12/bits/locale_conv.h:
 
 /usr/local/include/libpixy2/util.h:
 

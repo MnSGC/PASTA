@@ -18,6 +18,8 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <chrono>
+#include <sstream>
+#include <iomanip>>
 
 // definition of pins
 #define AIN2 27
@@ -343,7 +345,17 @@ void * actuate (void *args){
 
   void* write_to_csv (void * args) {
     // char buf[64];
-    fout.open("pixyData.csv", std::ios::out | std::ios::trunc);
+
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    std::ostringstream oss;
+    
+    std::string directory = "csv/";
+    oss << directory << "pixyData_" << std::put_time(&tm, "%Y-%m-%d_%H-%M-%S") << ".csv";
+    std::string current_filename = oss.str();
+    
+    // fout.open("pixyData.csv", std::ios::out | std::ios::trunc);
+    fout.open(current_filename, std::ios::out | std::ios::app); // the file is always new so no need for truncating
     fout << "H:M:S,signature,x location,y location,width,height \n";
     std::cout << "create csv file" << std::endl;
     fout.close();

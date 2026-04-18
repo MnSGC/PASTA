@@ -282,4 +282,15 @@ examples/CMakeFiles/pan_tilt_servo.dir/pan_tilt_servo.cpp.o
  /usr/include/arm-linux-gnueabihf/sys/wait.h
  /usr/include/arm-linux-gnueabihf/bits/types/idtype_t.h
  /usr/include/c++/12/chrono
+ /usr/include/c++/12/sstream
+ /usr/include/c++/12/bits/sstream.tcc
+ /usr/include/c++/12/iomanip
+ /usr/include/c++/12/locale
+ /usr/include/c++/12/bits/locale_facets_nonio.h
+ /usr/include/arm-linux-gnueabihf/c++/12/bits/time_members.h
+ /usr/include/arm-linux-gnueabihf/c++/12/bits/messages_members.h
+ /usr/include/libintl.h
+ /usr/include/c++/12/bits/locale_facets_nonio.tcc
+ /usr/include/c++/12/bits/locale_conv.h
+ /usr/include/c++/12/bits/quoted_string.h
 
