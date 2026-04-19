@@ -19,7 +19,7 @@
 #include <stdlib.h>
 #include <chrono>
 #include <sstream>
-#include <iomanip>>
+#include <iomanip>
 
 // definition of pins
 #define AIN2 27
@@ -350,7 +350,7 @@ void * actuate (void *args){
     auto tm = *std::localtime(&t);
     std::ostringstream oss;
     
-    std::string directory = "csv/";
+    std::string directory = "/home/mnsgc/PASTA/build/examples/csv/";
     oss << directory << "pixyData_" << std::put_time(&tm, "%Y-%m-%d_%H-%M-%S") << ".csv";
     std::string current_filename = oss.str();
     
@@ -361,7 +361,8 @@ void * actuate (void *args){
     fout.close();
     int index;
     while(run_flag && duration < run_time){
-      fout.open("pixyData.csv", std::ios::out | std::ios::app);
+      // fout.open("pixyData.csv", std::ios::out | std::ios::app);
+      fout.open(current_filename, std::ios::out | std::ios::app);
       timestamp = time(0);
     
       pthread_mutex_lock(&block_mutex);
